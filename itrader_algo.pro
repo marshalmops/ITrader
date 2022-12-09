@@ -5,7 +5,8 @@ CONFIG -= app_bundle
 SOURCES += \
         AppCore.cpp \
         AppInitializer.cpp \
-        database/DatabaseDriver.cpp \
+        database/driver/DatabaseDriver.cpp \
+        database/driver/DatabaseDriverFabric.cpp \
         database/facade/DatabaseFacadeIntellectualEditor.cpp \
         database/facade/DatabaseFacadeTrendSolver.cpp \
         database/DatabaseManager.cpp \
@@ -42,7 +43,8 @@ HEADERS += \
     AppCore.h \
     AppInitializer.h \
     database/DatabaseContext.h \
-    database/DatabaseDriver.h \
+    database/driver/DatabaseDriver.h \
+    database/driver/DatabaseDriverFabric.h \
     database/facade/DatabaseFacade.h \
     database/facade/DatabaseFacadeIntellectualEditor.h \
     database/facade/DatabaseFacadeTrendSolver.h \

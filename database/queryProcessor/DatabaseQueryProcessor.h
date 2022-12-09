@@ -1,7 +1,7 @@
 #ifndef DATABASEQUERYPROCESSOR_H
 #define DATABASEQUERYPROCESSOR_H
 
-#include "../DatabaseDriver.h"
+#include "../driver/DatabaseDriver.h"
 
 /*
     MIDDLE-LEVELED abstraction class.
