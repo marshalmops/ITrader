@@ -2,7 +2,7 @@
 
 bool DatabaseQueryProcessorFabric::createQueryProcessorWithSettings(const std::shared_ptr<DatabaseSettings> &dbSettings,
                                                                     std::unique_ptr<DatabaseDriver> &&dbDriver,
-                                                                    std::unique_ptr<DatabaseQueryProcessor> &queryProcessor)
+                                                                    std::shared_ptr<DatabaseQueryProcessor> &queryProcessor)
 {
     DatabaseContext::Type dbType{dbSettings->getDatabaseType()};
     
@@ -21,7 +21,7 @@ bool DatabaseQueryProcessorFabric::createQueryProcessorWithSettings(const std::s
     if (!queryProcessorBuffer.get())
         return false;
     
-    queryProcessor = std::unique_ptr<DatabaseQueryProcessor>{queryProcessorBuffer.release()};
+    queryProcessor = std::shared_ptr<DatabaseQueryProcessor>{queryProcessorBuffer.release()};
     
     return true;
 }

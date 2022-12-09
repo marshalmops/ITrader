@@ -34,9 +34,9 @@ std::unique_ptr<DatabaseDriver> DatabaseDriverFabric::createDriverWithSettings(c
     std::unique_ptr<DatabaseDriver> driver{nullptr};
     
     switch (dbSettings->getDatabaseType()) {
-    case DatabaseContext::Type::T_ODBC:   {driver = createODBCDriverWithSettings(dbSettings);}
-    case DatabaseContext::Type::T_PSQL:   {driver = createPSQLDriverWithSettings(dbSettings);}
-    case DatabaseContext::Type::T_SQLITE: {driver = createSQLiteDriverWithSettings(dbSettings);}
+    case DatabaseContext::Type::T_ODBC:   {driver = createODBCDriverWithSettings(dbSettings);   break;}
+    case DatabaseContext::Type::T_PSQL:   {driver = createPSQLDriverWithSettings(dbSettings);   break;}
+    case DatabaseContext::Type::T_SQLITE: {driver = createSQLiteDriverWithSettings(dbSettings); break;}
     }
     
     return std::move(driver);

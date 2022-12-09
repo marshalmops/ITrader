@@ -1,7 +1,7 @@
 #ifndef DATABASESETTINGS_H
 #define DATABASESETTINGS_H
 
-#include "database/DatabaseContext.h"
+#include "../database/DatabaseContext.h"
 #include "SettingsInterface.h"
 
 class DatabaseSettings : public SettingsInterface

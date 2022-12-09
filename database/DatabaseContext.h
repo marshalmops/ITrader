@@ -14,7 +14,7 @@ namespace DatabaseContext {
         T_COUNT
     };
     
-    QString getStringByDatabaseType(const Type dbType) {
+    inline QString getStringByDatabaseType(const Type dbType) {
         static QHash<Type, QString> dbTypeStringHash {
             {Type::T_ODBC,   "QODBC"},
             {Type::T_PSQL,   "QPSQL"},
@@ -26,7 +26,7 @@ namespace DatabaseContext {
               : QString());
     }
     
-    Type getDatabaseTypeByUInt(const uint32_t typeAsInt) {
+    inline Type getDatabaseTypeByUInt(const uint32_t typeAsInt) {
         if (typeAsInt <= static_cast<uint8_t>(Type::T_INVALID)
          || typeAsInt >= static_cast<uint8_t>(Type::T_COUNT))
         {
@@ -36,7 +36,7 @@ namespace DatabaseContext {
         return static_cast<Type>(typeAsInt);
     }
     
-    bool checkDatabaseTypeValidity(const Type type) {
+    inline bool checkDatabaseTypeValidity(const Type type) {
         if (type <= Type::T_INVALID || type >= Type::T_COUNT)
             return false;
         

@@ -4,7 +4,7 @@
 #include <memory>
 #include <QCoreApplication>
 
-#include "AppContext.h"
+#include "../AppContext.h"
 #include "DatabaseSettings.h"
 
 class SettingsManager

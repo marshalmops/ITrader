@@ -17,9 +17,10 @@ public:
     constexpr static const char* C_DATABASE_LINE_SIDE_PROP  = "lineSide";       
     
 private:
-    std::shared_ptr<LinePattern> m_linePattern;
-    uint64_t m_index;
+    uint64_t   m_index;
     Line::Side m_side;
+    
+    std::shared_ptr<LinePattern> m_linePattern;
     
 public:
     PatternLine();

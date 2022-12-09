@@ -13,7 +13,7 @@ public:
     
     static bool createQueryProcessorWithSettings(const std::shared_ptr<DatabaseSettings> &dbSettings,
                                                  std::unique_ptr<DatabaseDriver> &&dbDriver,
-                                                 std::unique_ptr<DatabaseQueryProcessor> &queryProcessor);
+                                                 std::shared_ptr<DatabaseQueryProcessor> &queryProcessor);
     
 private:
     static std::unique_ptr<DatabaseQueryProcessor>&& createQueryProcessorStandard(std::unique_ptr<DatabaseDriver> &dbDriver);

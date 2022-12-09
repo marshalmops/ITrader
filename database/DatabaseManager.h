@@ -6,6 +6,7 @@
 #include "DatabaseManagerTrendSolverInterface.h"
 #include "DatabaseManagerIntellectualEditorInterface.h"
 
+#include "driver/DatabaseDriverFabric.h"
 #include "queryProcessor/DatabaseQueryProcessorFabric.h"
 
 #include "settings/SettingsManager.h"
@@ -19,7 +20,7 @@ private:
     
     std::shared_ptr<DatabaseQueryProcessor> m_queryProcessor;
     
-    DatabaseManager(std::unique_ptr<DatabaseQueryProcessor> &&queryProcessor);
+    DatabaseManager(const std::shared_ptr<DatabaseQueryProcessor> &queryProcessor);
     
 public:
     static bool                                      initWithSettings();

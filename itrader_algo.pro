@@ -7,6 +7,7 @@ SOURCES += \
         AppInitializer.cpp \
         database/driver/DatabaseDriver.cpp \
         database/driver/DatabaseDriverFabric.cpp \
+        database/facade/DatabaseFacade.cpp \
         database/facade/DatabaseFacadeIntellectualEditor.cpp \
         database/facade/DatabaseFacadeTrendSolver.cpp \
         database/DatabaseManager.cpp \
