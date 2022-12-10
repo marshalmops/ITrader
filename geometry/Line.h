@@ -5,7 +5,7 @@
 #include <vector>
 #include <memory>
 
-#include "TrendSolverContext.h"
+#include "../TrendSolverContext.h"
 #include "Dot.h"
 
 class Line {

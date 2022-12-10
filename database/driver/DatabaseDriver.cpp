@@ -15,19 +15,15 @@ bool DatabaseDriver::exec(const QString &queryString,
     
     if (!db.isOpen()) return false;
     
-    QSqlQuery query{queryString, db};
+    queryResult = std::make_unique<QSqlQuery>(db.exec(queryString));
     
-    //if (!query.isValid()) return false;
-    
-    queryResult = std::make_unique<QSqlQuery>(std::move(query));
-    
-    if (!queryResult->exec(queryString)) {
+    if (queryResult->lastError().isValid()) {
         qInfo() << queryResult->lastError();
         
         return false;
     }
     
-    return !queryResult->lastError().isValid();
+    return true;
 }
 
 bool DatabaseDriver::exec(const QString &queryString)

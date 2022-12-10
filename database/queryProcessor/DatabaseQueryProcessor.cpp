@@ -100,7 +100,7 @@ bool DatabaseQueryProcessor::execInsertQuery(const std::string &table,
     }
     
     queryString += " VALUES(";
-    queryString += ::stringVectorToQStringForSQL(paramVector, ", ", "'");
+    queryString += ::stringVectorToQStringForSQL(valueVector, ", ", "'");
     queryString += ");";
     
     return m_databaseDriver->exec(queryString);
@@ -125,7 +125,7 @@ bool DatabaseQueryProcessor::execUpdateQuery(const std::vector<std::string> &tab
         
         queryString += curParamValue.first.c_str();
         queryString += " = ";
-        queryString += curParamValue.second.c_str();
+        queryString += (QString{'\''} + curParamValue.second.c_str() + '\'');
         queryString += (i == paramValueVectorSize - 1 ? ' ' : ',');
     }
     
@@ -149,7 +149,7 @@ bool DatabaseQueryProcessor::execDeleteQuery(const std::string &table,
     queryString += table.c_str();
     
     if (!conditionVector.empty()) {
-        queryString += "WHERE ";
+        queryString += " WHERE ";
         queryString += ::stringVectorToQStringForSQL(conditionVector, " AND ");
     }
     

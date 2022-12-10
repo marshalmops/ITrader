@@ -6,42 +6,34 @@ DatabaseDriver_test::DatabaseDriver_test(QObject *parent)
     
 }
 
-void DatabaseDriver_test::createDriver_test()
+void DatabaseDriver_test::initTestCase()
 {
     std::shared_ptr<DatabaseSettings> dbSettings{std::make_shared<DatabaseSettings>()};
     
     QCOMPARE(dbSettings->load(), true);
     
+    m_dbSettings = dbSettings;
+    
     auto driver = DatabaseDriverFabric::createDriverWithSettings(dbSettings);
     
     QVERIFY(driver.get() != nullptr);
+    
+    m_dbDriver = std::move(driver);
 }
 
 void DatabaseDriver_test::checkDriverWithDefaults_test()
 {
-    std::shared_ptr<DatabaseSettings> dbSettings{std::make_shared<DatabaseSettings>()};
-    
-    dbSettings->load();
-    
-    auto driver = DatabaseDriverFabric::createDriverWithSettings(dbSettings);
-    
     std::unique_ptr<QSqlQuery> result{nullptr};
     
-    QVERIFY(driver->exec("SELECT * FROM Pattern;", result));
+    QVERIFY(m_dbDriver->exec("SELECT * FROM Pattern;", result));
     QVERIFY(result.get() != nullptr);
 }
 
 void DatabaseDriver_test::checkSelectQueryWithDefaults_test()
 {
-    std::shared_ptr<DatabaseSettings> dbSettings{std::make_shared<DatabaseSettings>()};
-    
-    dbSettings->load();
-    
-    auto driver = DatabaseDriverFabric::createDriverWithSettings(dbSettings);
-    
     std::unique_ptr<QSqlQuery> result{nullptr};
     
-    QVERIFY(driver->exec("SELECT * FROM Pattern;", result));
+    QVERIFY(m_dbDriver->exec("SELECT * FROM Pattern;", result));
     QVERIFY(result.get() != nullptr);
     
     while (result->next()) {

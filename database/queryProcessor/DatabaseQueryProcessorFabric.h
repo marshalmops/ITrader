@@ -16,7 +16,7 @@ public:
                                                  std::shared_ptr<DatabaseQueryProcessor> &queryProcessor);
     
 private:
-    static std::unique_ptr<DatabaseQueryProcessor>&& createQueryProcessorStandard(std::unique_ptr<DatabaseDriver> &dbDriver);
+    static std::unique_ptr<DatabaseQueryProcessor> createQueryProcessorStandard(std::unique_ptr<DatabaseDriver> &dbDriver);
 };
 
 #endif // DATABASEQUERYPROCESSORFABRIC_H

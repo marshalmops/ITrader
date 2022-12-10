@@ -18,12 +18,14 @@ public:
     
 signals:
     
-public slots:
-    void createDriver_test();
-    void checkDriverWithDefaults_test();
-    
 private slots:
+    void initTestCase();
+    void checkDriverWithDefaults_test();
     void checkSelectQueryWithDefaults_test();
+    
+private:
+    std::shared_ptr<DatabaseSettings> m_dbSettings;
+    std::unique_ptr<DatabaseDriver> m_dbDriver;
 };
 
 #endif // DATABASEDRIVER_TEST_H

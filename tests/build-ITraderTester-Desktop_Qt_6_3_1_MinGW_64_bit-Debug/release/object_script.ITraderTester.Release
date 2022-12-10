@@ -1,0 +1,13 @@
+release/DatabaseDriver_test.o
+release/Pattern.o
+release/LinePattern.o
+release/PatternLine.o
+release/DatabaseSettings.o
+release/DatabaseDriverFabric.o
+release/DatabaseDriver.o
+release/DatabaseQueryProcessor.o
+release/DatabaseQueryProcessorFabric.o
+release/DatabaseQueryProcessor_test.o
+release/main.o
+release/moc_DatabaseDriver_test.o
+release/moc_DatabaseQueryProcessor_test.o

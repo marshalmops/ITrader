@@ -9,7 +9,7 @@
 #include <QVariant>
 
 #include "DatabaseEntity.h"
-#include "TrendSolverContext.h"
+#include "../TrendSolverContext.h"
 #include "PatternLine.h"
 
 class Pattern : public DatabaseEntity {

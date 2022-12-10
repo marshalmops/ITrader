@@ -1,0 +1,13 @@
+debug/DatabaseDriver_test.o
+debug/Pattern.o
+debug/LinePattern.o
+debug/PatternLine.o
+debug/DatabaseSettings.o
+debug/DatabaseDriverFabric.o
+debug/DatabaseDriver.o
+debug/DatabaseQueryProcessor.o
+debug/DatabaseQueryProcessorFabric.o
+debug/DatabaseQueryProcessor_test.o
+debug/main.o
+debug/moc_DatabaseDriver_test.o
+debug/moc_DatabaseQueryProcessor_test.o

@@ -13,8 +13,9 @@ bool DatabaseQueryProcessorFabric::createQueryProcessorWithSettings(const std::s
     
     switch (dbType) {
     case DatabaseContext::Type::T_ODBC:
-    case DatabaseContext::Type::T_SQLITE:
-        queryProcessorBuffer = createQueryProcessorStandard(dbDriver);
+    case DatabaseContext::Type::T_SQLITE: {
+        queryProcessorBuffer = createQueryProcessorStandard(dbDriver); break;
+    }
     default: return false;
     }
     
@@ -26,7 +27,7 @@ bool DatabaseQueryProcessorFabric::createQueryProcessorWithSettings(const std::s
     return true;
 }
 
-std::unique_ptr<DatabaseQueryProcessor>&& DatabaseQueryProcessorFabric::createQueryProcessorStandard(std::unique_ptr<DatabaseDriver> &dbDriver)
+std::unique_ptr<DatabaseQueryProcessor> DatabaseQueryProcessorFabric::createQueryProcessorStandard(std::unique_ptr<DatabaseDriver> &dbDriver)
 {
-    return std::make_unique<DatabaseQueryProcessor>(DatabaseQueryProcessor{std::move(dbDriver)});
+    return std::make_unique<DatabaseQueryProcessor>(std::move(dbDriver));
 }
