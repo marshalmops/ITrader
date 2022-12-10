@@ -23,21 +23,21 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_DatabaseDriver_test_t {
     const uint offsetsAndSize[10];
-    char stringdata0[102];
+    char stringdata0[97];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_DatabaseDriver_test_t, stringdata0) + ofs), len 
 static const qt_meta_stringdata_DatabaseDriver_test_t qt_meta_stringdata_DatabaseDriver_test = {
     {
 QT_MOC_LITERAL(0, 19), // "DatabaseDriver_test"
-QT_MOC_LITERAL(20, 17), // "createDriver_test"
-QT_MOC_LITERAL(38, 0), // ""
-QT_MOC_LITERAL(39, 28), // "checkDriverWithDefaults_test"
-QT_MOC_LITERAL(68, 33) // "checkSelectQueryWithDefaults_..."
+QT_MOC_LITERAL(20, 12), // "initTestCase"
+QT_MOC_LITERAL(33, 0), // ""
+QT_MOC_LITERAL(34, 28), // "checkDriverWithDefaults_test"
+QT_MOC_LITERAL(63, 33) // "checkSelectQueryWithDefaults_..."
 
     },
-    "DatabaseDriver_test\0createDriver_test\0"
-    "\0checkDriverWithDefaults_test\0"
+    "DatabaseDriver_test\0initTestCase\0\0"
+    "checkDriverWithDefaults_test\0"
     "checkSelectQueryWithDefaults_test"
 };
 #undef QT_MOC_LITERAL
@@ -56,8 +56,8 @@ static const uint qt_meta_data_DatabaseDriver_test[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   32,    2, 0x0a,    1 /* Public */,
-       3,    0,   33,    2, 0x0a,    2 /* Public */,
+       1,    0,   32,    2, 0x08,    1 /* Private */,
+       3,    0,   33,    2, 0x08,    2 /* Private */,
        4,    0,   34,    2, 0x08,    3 /* Private */,
 
  // slots: parameters
@@ -74,7 +74,7 @@ void DatabaseDriver_test::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
         auto *_t = static_cast<DatabaseDriver_test *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->createDriver_test(); break;
+        case 0: _t->initTestCase(); break;
         case 1: _t->checkDriverWithDefaults_test(); break;
         case 2: _t->checkSelectQueryWithDefaults_test(); break;
         default: ;

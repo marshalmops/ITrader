@@ -10,6 +10,8 @@
 
 class Line {
 public:
+    using SideType = uint8_t;
+    
     enum class Side : uint8_t {
         S_UNDEFINED = 0,
         S_UP,

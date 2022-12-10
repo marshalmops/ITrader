@@ -1,5 +1,29 @@
 #include "DatabaseFacade.h"
 
+bool DatabaseFacade::getPatternStringVariantHashWithQuery(const std::unique_ptr<QSqlQuery> &query,
+                                                          QHash<QString, QVariant> &patternStringVariantHash)
+{
+    if (!query->isValid()) return false;
+    
+    QVariant idVariant         {query->value(Pattern::C_DATABASE_ID_PROP)};
+    QVariant nameVariant       {query->value(Pattern::C_DATABASE_NAME_PROP)};
+    QVariant probabilityVariant{query->value(Pattern::C_DATABASE_PROBABILITY_PROP)};
+    QVariant countOfUsesVariant{query->value(Pattern::C_DATABASE_USE_COUNT_PROP)};
+    QVariant prevTrendVariant  {query->value(Pattern::C_DATABASE_PREV_TREND_PROP)};
+    QVariant futureTrendVariant{query->value(Pattern::C_DATABASE_FUTURE_TREND_PROP)};
+    
+    patternStringVariantHash = QHash<QString, QVariant>{
+        {Pattern::C_DATABASE_ID_PROP,           idVariant},
+        {Pattern::C_DATABASE_NAME_PROP,         nameVariant},
+        {Pattern::C_DATABASE_PROBABILITY_PROP,  probabilityVariant},
+        {Pattern::C_DATABASE_USE_COUNT_PROP,    countOfUsesVariant},
+        {Pattern::C_DATABASE_PREV_TREND_PROP,   prevTrendVariant},
+        {Pattern::C_DATABASE_FUTURE_TREND_PROP, futureTrendVariant}
+    };
+    
+    return true;
+}
+
 DatabaseFacade::DatabaseFacade(const std::shared_ptr<DatabaseQueryProcessor> &processor)
     : m_processor{processor}
 {
@@ -40,9 +64,15 @@ std::unique_ptr<ErrorDatabase> DatabaseFacade::getLinePatterns(std::vector<std::
     return std::unique_ptr<ErrorDatabase>{nullptr};
 }
 
-std::unique_ptr<ErrorDatabase> DatabaseFacade::getPatterns(const std::vector<std::shared_ptr<LinePattern>> &linePatterns,
-                                                           std::vector<std::shared_ptr<Pattern>> &patterns)
+std::unique_ptr<ErrorDatabase> DatabaseFacade::getPatterns(std::vector<std::shared_ptr<Pattern>> &patterns)
 {
+    auto linePatternStore = LinePatternStore::getInstance();
+    
+    if (!linePatternStore.get()) 
+        return std::make_unique<ErrorDatabaseIllegalState>();
+    
+    auto linePatterns = linePatternStore->getLinePatterns();
+    
     if (linePatterns.empty()) 
         return std::make_unique<ErrorDatabaseIllegalState>();
     
@@ -55,21 +85,26 @@ std::unique_ptr<ErrorDatabase> DatabaseFacade::getPatterns(const std::vector<std
     std::vector<std::shared_ptr<Pattern>> loadedPatterns{};
     
     while (query->next()) {
-        QVariant idVariant         {query->value(Pattern::C_DATABASE_ID_PROP)};
-        QVariant nameVariant       {query->value(Pattern::C_DATABASE_NAME_PROP)};
-        QVariant probabilityVariant{query->value(Pattern::C_DATABASE_PROBABILITY_PROP)};
-        QVariant countOfUsesVariant{query->value(Pattern::C_DATABASE_USE_COUNT_PROP)};
-        QVariant prevTrendVariant  {query->value(Pattern::C_DATABASE_PREV_TREND_PROP)};
-        QVariant futureTrendVariant{query->value(Pattern::C_DATABASE_FUTURE_TREND_PROP)};
+//        QVariant idVariant         {query->value(Pattern::C_DATABASE_ID_PROP)};
+//        QVariant nameVariant       {query->value(Pattern::C_DATABASE_NAME_PROP)};
+//        QVariant probabilityVariant{query->value(Pattern::C_DATABASE_PROBABILITY_PROP)};
+//        QVariant countOfUsesVariant{query->value(Pattern::C_DATABASE_USE_COUNT_PROP)};
+//        QVariant prevTrendVariant  {query->value(Pattern::C_DATABASE_PREV_TREND_PROP)};
+//        QVariant futureTrendVariant{query->value(Pattern::C_DATABASE_FUTURE_TREND_PROP)};
         
-        QHash<QString, QVariant> patternStringVariantHash{
-            {Pattern::C_DATABASE_ID_PROP,           idVariant},
-            {Pattern::C_DATABASE_NAME_PROP,         nameVariant},
-            {Pattern::C_DATABASE_PROBABILITY_PROP,  probabilityVariant},
-            {Pattern::C_DATABASE_USE_COUNT_PROP,    countOfUsesVariant},
-            {Pattern::C_DATABASE_PREV_TREND_PROP,   prevTrendVariant},
-            {Pattern::C_DATABASE_FUTURE_TREND_PROP, futureTrendVariant}
-        };
+//        QHash<QString, QVariant> patternStringVariantHash{
+//            {Pattern::C_DATABASE_ID_PROP,           idVariant},
+//            {Pattern::C_DATABASE_NAME_PROP,         nameVariant},
+//            {Pattern::C_DATABASE_PROBABILITY_PROP,  probabilityVariant},
+//            {Pattern::C_DATABASE_USE_COUNT_PROP,    countOfUsesVariant},
+//            {Pattern::C_DATABASE_PREV_TREND_PROP,   prevTrendVariant},
+//            {Pattern::C_DATABASE_FUTURE_TREND_PROP, futureTrendVariant}
+//        };
+        
+        QHash<QString, QVariant> patternStringVariantHash{};
+        
+        if (!getPatternStringVariantHashWithQuery(query, patternStringVariantHash))
+            return std::make_unique<ErrorDatabaseQueryError>();
         
         std::unique_ptr<Pattern> loadedPattern{std::make_unique<Pattern>()};
         
@@ -92,6 +127,53 @@ std::unique_ptr<ErrorDatabase> DatabaseFacade::getPatterns(const std::vector<std
     }
     
     patterns = std::move(loadedPatterns);
+    
+    return std::unique_ptr<ErrorDatabase>{nullptr};
+}
+
+std::unique_ptr<ErrorDatabase> DatabaseFacade::getPatternById(const uint64_t patternId,
+                                                              std::shared_ptr<Pattern> &pattern)
+{
+    auto linePatternStore = LinePatternStore::getInstance();
+    
+    if (!linePatternStore.get()) 
+        return std::make_unique<ErrorDatabaseIllegalState>();
+    
+    auto linePatterns = linePatternStore->getLinePatterns();
+    
+    if (linePatterns.empty()) 
+        return std::make_unique<ErrorDatabaseIllegalState>();
+    
+    std::vector<std::string>   tablesVector{Pattern::C_DATABASE_TABLE_NAME};
+    std::vector<std::string>   conditionVector{std::string{Pattern::C_DATABASE_ID_PROP} + " = \'" + std::to_string(patternId) + '\''};
+    std::unique_ptr<QSqlQuery> query{};
+    
+    if (!m_processor->execSelectQuery(tablesVector, query, std::vector<std::string>{}, conditionVector))
+        return std::make_unique<ErrorDatabaseQueryError>();
+    
+    query->next();
+    
+    QHash<QString, QVariant> patternStringVariantHash{};
+    
+    if (!getPatternStringVariantHashWithQuery(query, patternStringVariantHash))
+        return std::make_unique<ErrorDatabaseQueryError>();
+    
+    std::shared_ptr<Pattern> loadedPattern{std::make_shared<Pattern>()};
+    
+    if (!loadedPattern->fillWithVariantsHash(patternStringVariantHash))
+        return std::make_unique<ErrorDatabaseQueryError>();
+    
+    std::vector<PatternLine> curPatternLines{};
+    
+    std::unique_ptr<ErrorDatabase> patternLinesQueryError{getPatternLines(loadedPattern, curPatternLines)};
+    
+    if (patternLinesQueryError.get())
+        return std::move(patternLinesQueryError);
+    
+    if (!loadedPattern->initPatternLines(std::move(curPatternLines)))
+        return std::make_unique<ErrorDatabaseQueryError>();
+    
+    pattern = loadedPattern;
     
     return std::unique_ptr<ErrorDatabase>{nullptr};
 }

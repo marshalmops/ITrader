@@ -22,6 +22,22 @@ Pattern::Pattern()
     
 }
 
+Pattern::Pattern(const std::string &name, 
+                 const float probability,
+                 const Trend prevTrend, 
+                 const Trend futureTrend, 
+                 std::vector<PatternLine> &&patternLines)
+    : m_id{0},
+      m_name{name},
+      m_probability{probability},
+      m_countOfUses{0},
+      m_prevTrend{prevTrend},
+      m_futureTrend{futureTrend},
+      m_patternLines{patternLines}
+{
+    
+}
+
 Pattern::Pattern(const uint64_t id,
                  const std::string& name,
                  const float probability,
@@ -68,7 +84,7 @@ const std::vector<PatternLine>& Pattern::getPatternLines() const {
 
 bool Pattern::initPatternLines(std::vector<PatternLine> &&patternLines)
 {
-    if (m_patternLines.empty()) return false;
+    if (!m_patternLines.empty()) return false;
     
     m_patternLines = std::move(patternLines);
     
@@ -83,8 +99,8 @@ bool Pattern::findInLinesFromBack(const std::vector<PatternLine> &patternLines) 
     int patternInnerIndex = lastPatternInnerIndex;
     
     for (int i = patternLines.size() - 1; i >= 0; --i) {
-        if (patternLines.at(i).getLinePattern()->getId() 
-         == m_patternLines.at(patternInnerIndex).getLinePattern()->getId())
+        if (patternLines.at(i).getLineId() 
+         == m_patternLines.at(patternInnerIndex).getLineId())
         {
             --patternInnerIndex;
         } else {
@@ -126,31 +142,7 @@ bool Pattern::fillWithVariantsHash(const QHash<QString, QVariant> &stringVariant
     {
         return false;
     }
-    
-//    std::unique_ptr<uint64_t> rawId{};
-//    std::unique_ptr<QString>  rawName{};
-//    std::unique_ptr<float>    rawProbability{};
-//    std::unique_ptr<uint64_t> rawCountOfUses{};
-//    std::unique_ptr<TrendSolverContext::TrendType> rawPrevTrend{};
-//    std::unique_ptr<TrendSolverContext::TrendType> rawFutureTrend{};
-    
-//    if (!DatabaseEntity::getValueByVariant(idVariant,          rawId)
-//     || !DatabaseEntity::getValueByVariant(nameVariant,        rawName)
-//     || !DatabaseEntity::getValueByVariant(probabilityVariant, rawProbability)
-//     || !DatabaseEntity::getValueByVariant(countOfUsesVariant, rawCountOfUses)
-//     || !DatabaseEntity::getValueByVariant(prevTrendVariant,   rawPrevTrend)
-//     || !DatabaseEntity::getValueByVariant(futureTrendVariant, rawFutureTrend))
-//    {
-//        return false;
-//    }
-    
-//    m_id          = *rawId;
-//    m_name        = rawName->toStdString();
-//    m_probability = *rawProbability;
-//    m_countOfUses = *rawCountOfUses;
-//    m_prevTrend   = TrendSolverContext::getTrendByValue(*rawPrevTrend);
-//    m_futureTrend = TrendSolverContext::getTrendByValue(*rawFutureTrend);
-    
+
     m_id          = idVariant.value<uint64_t>();
     m_name        = nameVariant.value<QString>().toStdString();
     m_probability = probabilityVariant.value<float>();

@@ -24,7 +24,8 @@ public:
     const std::shared_ptr<LinePattern> getLinePatternById(const uint64_t id) const;
     const std::shared_ptr<LinePattern> getLinePatternByAngleType(const LinePattern::AngleType angleType) const;
     
-    bool addLinePattern(std::unique_ptr<LinePattern> &linePattern);
+    bool addLinePattern  (std::unique_ptr<LinePattern> &linePattern);
+    bool initLinePatterns(std::vector<std::shared_ptr<LinePattern>> &linePatterns);
 };
 
 #endif // LINEPATTERNSTORE_H

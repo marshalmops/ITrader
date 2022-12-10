@@ -50,3 +50,12 @@ bool LinePatternStore::addLinePattern(std::unique_ptr<LinePattern> &linePattern)
     
     return true;
 }
+
+bool LinePatternStore::initLinePatterns(std::vector<std::shared_ptr<LinePattern> > &linePatterns)
+{
+    if (!m_linePatterns.empty()) return false;
+    
+    m_linePatterns = std::move(linePatterns);
+    
+    return true;
+}

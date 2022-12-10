@@ -34,11 +34,9 @@ public:
                 const std::string &name, 
                 const AngleType    angleType);
     
-    uint64_t getId() const;
-    
-    const std::string& getName() const;
-    
-    AngleType getAngleType() const;
+    uint64_t           getId       () const;
+    const std::string& getName     () const;
+    AngleType          getAngleType() const;
     
     virtual bool fillWithVariantsHash(const QHash<QString, QVariant> &stringVariantHash) override;
 };

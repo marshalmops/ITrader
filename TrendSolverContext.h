@@ -24,6 +24,10 @@ namespace TrendSolverContext {
         
         return static_cast<Trend>(trendValue);
     }
+    
+    inline TrendType getTrendValue(const Trend trend) {
+        return static_cast<TrendType>(trend);
+    }
 }
 
 #endif // TRENDSOLVERCONTEXT_H

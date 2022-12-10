@@ -11,28 +11,31 @@ class PatternLine : public DatabaseEntity {
 public:
     constexpr static const char* C_DATABASE_TABLE_NAME = "PatternLine";   
     
-    constexpr static const char* C_DATABASE_PATTERN_ID_PROP = "patternID";   
-    constexpr static const char* C_DATABASE_LINE_ID_PROP    = "lineID";   
+    constexpr static const char* C_DATABASE_PATTERN_ID_PROP = "patternId";   
+    constexpr static const char* C_DATABASE_LINE_ID_PROP    = "lineId";   
     constexpr static const char* C_DATABASE_LINE_INDEX_PROP = "lineIndex";   
     constexpr static const char* C_DATABASE_LINE_SIDE_PROP  = "lineSide";       
     
 private:
+    uint64_t   m_patternId;
+    uint64_t   m_lineId;
     uint64_t   m_index;
     Line::Side m_side;
     
-    std::shared_ptr<LinePattern> m_linePattern;
-    
 public:
     PatternLine();
-    PatternLine(const std::shared_ptr<LinePattern> linePattern,
-                const uint64_t index,
+    PatternLine(const uint64_t   lineId,
+                const uint64_t   index,
+                const Line::Side side);
+    PatternLine(const uint64_t   patternId,
+                const uint64_t   lineId,
+                const uint64_t   index,
                 const Line::Side side);
     
-    const std::shared_ptr<LinePattern>& getLinePattern() const;
-    
-    uint64_t getIndex() const;
-    
-    Line::Side getSide() const;
+    uint64_t   getPatternId() const;
+    uint64_t   getLineId   () const;
+    uint64_t   getIndex    () const;
+    Line::Side getSide     () const;
     
     virtual bool fillWithVariantsHash(const QHash<QString, QVariant> &stringVariantHash) override;
 };

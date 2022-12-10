@@ -54,26 +54,60 @@ SOURCES       = ..\ITraderTester\database\DatabaseDriver_test.cpp \
 		..\..\pattern\Pattern.cpp \
 		..\..\pattern\LinePattern.cpp \
 		..\..\pattern\PatternLine.cpp \
+		..\..\pattern\LinePatternStore.cpp \
 		..\..\settings\DatabaseSettings.cpp \
 		..\..\database\driver\DatabaseDriverFabric.cpp \
 		..\..\database\driver\DatabaseDriver.cpp \
 		..\..\database\queryProcessor\DatabaseQueryProcessor.cpp \
 		..\..\database\queryProcessor\DatabaseQueryProcessorFabric.cpp \
+		..\..\error\ErrorDatabase.cpp \
+		..\..\error\ErrorDatabaseIllegalState.cpp \
+		..\..\error\ErrorDatabaseIncorrectQuery.cpp \
+		..\..\error\ErrorDatabaseInitFailed.cpp \
+		..\..\error\ErrorDatabaseQueryError.cpp \
+		..\..\error\Error.cpp \
+		..\..\error\ErrorApp.cpp \
+		..\..\error\ErrorAppIncorrectBehaviour.cpp \
+		..\..\error\ErrorSolver.cpp \
+		..\..\error\ErrorSolverInvalidInputData.cpp \
+		..\..\database\facade\DatabaseFacade.cpp \
+		..\..\database\facade\DatabaseFacadeIntellectualEditor.cpp \
+		..\ITraderTester\database\DatabaseFacadeIntellectualEditor_test.cpp \
+		..\ITraderTester\database\DatabaseFacade_test.cpp \
 		..\ITraderTester\database\DatabaseQueryProcessor_test.cpp \
 		..\ITraderTester\main.cpp debug\moc_DatabaseDriver_test.cpp \
+		debug\moc_DatabaseFacadeIntellectualEditor_test.cpp \
+		debug\moc_DatabaseFacade_test.cpp \
 		debug\moc_DatabaseQueryProcessor_test.cpp
 OBJECTS       = debug/DatabaseDriver_test.o \
 		debug/Pattern.o \
 		debug/LinePattern.o \
 		debug/PatternLine.o \
+		debug/LinePatternStore.o \
 		debug/DatabaseSettings.o \
 		debug/DatabaseDriverFabric.o \
 		debug/DatabaseDriver.o \
 		debug/DatabaseQueryProcessor.o \
 		debug/DatabaseQueryProcessorFabric.o \
+		debug/ErrorDatabase.o \
+		debug/ErrorDatabaseIllegalState.o \
+		debug/ErrorDatabaseIncorrectQuery.o \
+		debug/ErrorDatabaseInitFailed.o \
+		debug/ErrorDatabaseQueryError.o \
+		debug/Error.o \
+		debug/ErrorApp.o \
+		debug/ErrorAppIncorrectBehaviour.o \
+		debug/ErrorSolver.o \
+		debug/ErrorSolverInvalidInputData.o \
+		debug/DatabaseFacade.o \
+		debug/DatabaseFacadeIntellectualEditor.o \
+		debug/DatabaseFacadeIntellectualEditor_test.o \
+		debug/DatabaseFacade_test.o \
 		debug/DatabaseQueryProcessor_test.o \
 		debug/main.o \
 		debug/moc_DatabaseDriver_test.o \
+		debug/moc_DatabaseFacadeIntellectualEditor_test.o \
+		debug/moc_DatabaseFacade_test.o \
 		debug/moc_DatabaseQueryProcessor_test.o
 
 DIST          =  ..\ITraderTester\database\DatabaseDriver_test.h \
@@ -81,20 +115,50 @@ DIST          =  ..\ITraderTester\database\DatabaseDriver_test.h \
 		..\..\pattern\Pattern.h \
 		..\..\pattern\LinePattern.h \
 		..\..\pattern\PatternLine.h \
+		..\..\pattern\LinePatternStore.h \
 		..\..\settings\DatabaseSettings.h \
 		..\..\database\driver\DatabaseDriverFabric.h \
 		..\..\database\driver\DatabaseDriver.h \
 		..\..\database\queryProcessor\DatabaseQueryProcessor.h \
 		..\..\database\queryProcessor\DatabaseQueryProcessorFabric.h \
+		..\..\error\ErrorDatabase.h \
+		..\..\error\ErrorDatabaseIllegalState.h \
+		..\..\error\ErrorDatabaseIncorrectQuery.h \
+		..\..\error\ErrorDatabaseInitFailed.h \
+		..\..\error\ErrorDatabaseQueryError.h \
+		..\..\error\Error.h \
+		..\..\error\ErrorApp.h \
+		..\..\error\ErrorAppIncorrectBehaviour.h \
+		..\..\error\ErrorSolver.h \
+		..\..\error\ErrorSolverInvalidInputData.h \
+		..\..\database\facade\DatabaseFacade.h \
+		..\..\database\facade\DatabaseFacadeIntellectualEditor.h \
+		..\ITraderTester\database\DatabaseFacadeIntellectualEditor_test.h \
+		..\ITraderTester\database\DatabaseFacade_test.h \
 		..\ITraderTester\database\DatabaseQueryProcessor_test.h ..\ITraderTester\database\DatabaseDriver_test.cpp \
 		..\..\pattern\Pattern.cpp \
 		..\..\pattern\LinePattern.cpp \
 		..\..\pattern\PatternLine.cpp \
+		..\..\pattern\LinePatternStore.cpp \
 		..\..\settings\DatabaseSettings.cpp \
 		..\..\database\driver\DatabaseDriverFabric.cpp \
 		..\..\database\driver\DatabaseDriver.cpp \
 		..\..\database\queryProcessor\DatabaseQueryProcessor.cpp \
 		..\..\database\queryProcessor\DatabaseQueryProcessorFabric.cpp \
+		..\..\error\ErrorDatabase.cpp \
+		..\..\error\ErrorDatabaseIllegalState.cpp \
+		..\..\error\ErrorDatabaseIncorrectQuery.cpp \
+		..\..\error\ErrorDatabaseInitFailed.cpp \
+		..\..\error\ErrorDatabaseQueryError.cpp \
+		..\..\error\Error.cpp \
+		..\..\error\ErrorApp.cpp \
+		..\..\error\ErrorAppIncorrectBehaviour.cpp \
+		..\..\error\ErrorSolver.cpp \
+		..\..\error\ErrorSolverInvalidInputData.cpp \
+		..\..\database\facade\DatabaseFacade.cpp \
+		..\..\database\facade\DatabaseFacadeIntellectualEditor.cpp \
+		..\ITraderTester\database\DatabaseFacadeIntellectualEditor_test.cpp \
+		..\ITraderTester\database\DatabaseFacade_test.cpp \
 		..\ITraderTester\database\DatabaseQueryProcessor_test.cpp \
 		..\ITraderTester\main.cpp
 QMAKE_TARGET  = ITraderTester
@@ -116,10 +180,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) ITraderTester.zip $(SOURCES) $(DIST) ..\ITraderTester\ITraderTester.pro C:\Qt\6.3.1\mingw_64\mkspecs\features\spec_pre.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\device_config.prf C:\Qt\6.3.1\mingw_64\mkspecs\common\sanitize.conf C:\Qt\6.3.1\mingw_64\mkspecs\common\gcc-base.conf C:\Qt\6.3.1\mingw_64\mkspecs\common\g++-base.conf C:\Qt\6.3.1\mingw_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\Qt\6.3.1\mingw_64\mkspecs\common\windows-vulkan.conf C:\Qt\6.3.1\mingw_64\mkspecs\common\g++-win32.conf C:\Qt\6.3.1\mingw_64\mkspecs\common\windows-desktop.conf C:\Qt\6.3.1\mingw_64\mkspecs\qconfig.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_ext_freetype.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_ext_libjpeg.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_ext_libpng.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_core.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_core5compat.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_core5compat_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_entrypoint_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_freetype_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_harfbuzz_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_help.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_jpeg_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labsanimation.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labsanimation_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labssettings.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labssettings_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labssharedimage.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labssharedimage_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_linguist.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_linguist_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_multimediaquick_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_network.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_openglwidgets.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_openglwidgets_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_png_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlcore.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlcore_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmldom_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlintegration.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlintegration_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmllint_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickcontrolstestutilsprivate_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quicklayouts.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quicklayouts_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quicktestutilsprivate_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_sensors.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_sensorsquick.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_sensorsquick_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_svgwidgets.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_svgwidgets_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_tools_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\features\qt_functions.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\qt_config.prf C:\Qt\6.3.1\mingw_64\mkspecs\win32-g++\qmake.conf C:\Qt\6.3.1\mingw_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\6.3.1\mingw_64\mkspecs\features\exclusive_builds.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\toolchain.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\default_pre.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\win32\default_pre.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\resolve_config.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\default_post.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\build_pass.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\testcase.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\warn_on.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\qt.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\resources_functions.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\resources.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\moc.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\testlib_defines.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\win32\console.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\win32\opengl.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\qml_debug.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\entrypoint.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\precompile_header.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\qmake_use.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\file_copies.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\testcase_targets.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\exceptions.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\yacc.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\lex.prf ..\ITraderTester\ITraderTester.pro C:\Qt\6.3.1\mingw_64\lib\Qt6Gui.prl C:\Qt\6.3.1\mingw_64\lib\Qt6Test.prl C:\Qt\6.3.1\mingw_64\lib\Qt6Sql.prl C:\Qt\6.3.1\mingw_64\lib\Qt6Core.prl   C:\Qt\6.3.1\mingw_64\mkspecs\features\data\dummy.cpp ..\ITraderTester\database\DatabaseDriver_test.h ..\..\TrendSolverContext.h ..\..\pattern\Pattern.h ..\..\pattern\LinePattern.h ..\..\pattern\PatternLine.h ..\..\settings\DatabaseSettings.h ..\..\database\driver\DatabaseDriverFabric.h ..\..\database\driver\DatabaseDriver.h ..\..\database\queryProcessor\DatabaseQueryProcessor.h ..\..\database\queryProcessor\DatabaseQueryProcessorFabric.h ..\ITraderTester\database\DatabaseQueryProcessor_test.h  ..\ITraderTester\database\DatabaseDriver_test.cpp ..\..\pattern\Pattern.cpp ..\..\pattern\LinePattern.cpp ..\..\pattern\PatternLine.cpp ..\..\settings\DatabaseSettings.cpp ..\..\database\driver\DatabaseDriverFabric.cpp ..\..\database\driver\DatabaseDriver.cpp ..\..\database\queryProcessor\DatabaseQueryProcessor.cpp ..\..\database\queryProcessor\DatabaseQueryProcessorFabric.cpp ..\ITraderTester\database\DatabaseQueryProcessor_test.cpp ..\ITraderTester\main.cpp     
+	$(ZIP) ITraderTester.zip $(SOURCES) $(DIST) ..\ITraderTester\ITraderTester.pro C:\Qt\6.3.1\mingw_64\mkspecs\features\spec_pre.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\device_config.prf C:\Qt\6.3.1\mingw_64\mkspecs\common\sanitize.conf C:\Qt\6.3.1\mingw_64\mkspecs\common\gcc-base.conf C:\Qt\6.3.1\mingw_64\mkspecs\common\g++-base.conf C:\Qt\6.3.1\mingw_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\Qt\6.3.1\mingw_64\mkspecs\common\windows-vulkan.conf C:\Qt\6.3.1\mingw_64\mkspecs\common\g++-win32.conf C:\Qt\6.3.1\mingw_64\mkspecs\common\windows-desktop.conf C:\Qt\6.3.1\mingw_64\mkspecs\qconfig.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_ext_freetype.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_ext_libjpeg.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_ext_libpng.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_core.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_core5compat.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_core5compat_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_entrypoint_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_freetype_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_harfbuzz_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_help.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_jpeg_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labsanimation.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labsanimation_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labssettings.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labssettings_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labssharedimage.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labssharedimage_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_linguist.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_linguist_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_multimediaquick_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_network.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_openglwidgets.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_openglwidgets_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_png_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlcore.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlcore_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmldom_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlintegration.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlintegration_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmllint_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickcontrolstestutilsprivate_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quicklayouts.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quicklayouts_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quicktestutilsprivate_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_sensors.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_sensorsquick.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_sensorsquick_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_svgwidgets.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_svgwidgets_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_tools_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\6.3.1\mingw_64\mkspecs\features\qt_functions.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\qt_config.prf C:\Qt\6.3.1\mingw_64\mkspecs\win32-g++\qmake.conf C:\Qt\6.3.1\mingw_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\6.3.1\mingw_64\mkspecs\features\exclusive_builds.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\toolchain.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\default_pre.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\win32\default_pre.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\resolve_config.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\default_post.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\build_pass.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\testcase.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\warn_on.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\qt.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\resources_functions.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\resources.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\moc.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\testlib_defines.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\win32\console.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\win32\opengl.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\qml_debug.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\entrypoint.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\precompile_header.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\qmake_use.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\file_copies.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\testcase_targets.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\exceptions.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\yacc.prf C:\Qt\6.3.1\mingw_64\mkspecs\features\lex.prf ..\ITraderTester\ITraderTester.pro C:\Qt\6.3.1\mingw_64\lib\Qt6Gui.prl C:\Qt\6.3.1\mingw_64\lib\Qt6Test.prl C:\Qt\6.3.1\mingw_64\lib\Qt6Sql.prl C:\Qt\6.3.1\mingw_64\lib\Qt6Core.prl   C:\Qt\6.3.1\mingw_64\mkspecs\features\data\dummy.cpp ..\ITraderTester\database\DatabaseDriver_test.h ..\..\TrendSolverContext.h ..\..\pattern\Pattern.h ..\..\pattern\LinePattern.h ..\..\pattern\PatternLine.h ..\..\pattern\LinePatternStore.h ..\..\settings\DatabaseSettings.h ..\..\database\driver\DatabaseDriverFabric.h ..\..\database\driver\DatabaseDriver.h ..\..\database\queryProcessor\DatabaseQueryProcessor.h ..\..\database\queryProcessor\DatabaseQueryProcessorFabric.h ..\..\error\ErrorDatabase.h ..\..\error\ErrorDatabaseIllegalState.h ..\..\error\ErrorDatabaseIncorrectQuery.h ..\..\error\ErrorDatabaseInitFailed.h ..\..\error\ErrorDatabaseQueryError.h ..\..\error\Error.h ..\..\error\ErrorApp.h ..\..\error\ErrorAppIncorrectBehaviour.h ..\..\error\ErrorSolver.h ..\..\error\ErrorSolverInvalidInputData.h ..\..\database\facade\DatabaseFacade.h ..\..\database\facade\DatabaseFacadeIntellectualEditor.h ..\ITraderTester\database\DatabaseFacadeIntellectualEditor_test.h ..\ITraderTester\database\DatabaseFacade_test.h ..\ITraderTester\database\DatabaseQueryProcessor_test.h  ..\ITraderTester\database\DatabaseDriver_test.cpp ..\..\pattern\Pattern.cpp ..\..\pattern\LinePattern.cpp ..\..\pattern\PatternLine.cpp ..\..\pattern\LinePatternStore.cpp ..\..\settings\DatabaseSettings.cpp ..\..\database\driver\DatabaseDriverFabric.cpp ..\..\database\driver\DatabaseDriver.cpp ..\..\database\queryProcessor\DatabaseQueryProcessor.cpp ..\..\database\queryProcessor\DatabaseQueryProcessorFabric.cpp ..\..\error\ErrorDatabase.cpp ..\..\error\ErrorDatabaseIllegalState.cpp ..\..\error\ErrorDatabaseIncorrectQuery.cpp ..\..\error\ErrorDatabaseInitFailed.cpp ..\..\error\ErrorDatabaseQueryError.cpp ..\..\error\Error.cpp ..\..\error\ErrorApp.cpp ..\..\error\ErrorAppIncorrectBehaviour.cpp ..\..\error\ErrorSolver.cpp ..\..\error\ErrorSolverInvalidInputData.cpp ..\..\database\facade\DatabaseFacade.cpp ..\..\database\facade\DatabaseFacadeIntellectualEditor.cpp ..\ITraderTester\database\DatabaseFacadeIntellectualEditor_test.cpp ..\ITraderTester\database\DatabaseFacade_test.cpp ..\ITraderTester\database\DatabaseQueryProcessor_test.cpp ..\ITraderTester\main.cpp     
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\DatabaseDriver_test.o debug\Pattern.o debug\LinePattern.o debug\PatternLine.o debug\DatabaseSettings.o debug\DatabaseDriverFabric.o debug\DatabaseDriver.o debug\DatabaseQueryProcessor.o debug\DatabaseQueryProcessorFabric.o debug\DatabaseQueryProcessor_test.o debug\main.o debug\moc_DatabaseDriver_test.o debug\moc_DatabaseQueryProcessor_test.o
+	-$(DEL_FILE) debug\DatabaseDriver_test.o debug\Pattern.o debug\LinePattern.o debug\PatternLine.o debug\LinePatternStore.o debug\DatabaseSettings.o debug\DatabaseDriverFabric.o debug\DatabaseDriver.o debug\DatabaseQueryProcessor.o debug\DatabaseQueryProcessorFabric.o debug\ErrorDatabase.o debug\ErrorDatabaseIllegalState.o debug\ErrorDatabaseIncorrectQuery.o debug\ErrorDatabaseInitFailed.o debug\ErrorDatabaseQueryError.o debug\Error.o debug\ErrorApp.o debug\ErrorAppIncorrectBehaviour.o debug\ErrorSolver.o debug\ErrorSolverInvalidInputData.o debug\DatabaseFacade.o debug\DatabaseFacadeIntellectualEditor.o debug\DatabaseFacadeIntellectualEditor_test.o debug\DatabaseFacade_test.o debug\DatabaseQueryProcessor_test.o debug\main.o debug\moc_DatabaseDriver_test.o debug\moc_DatabaseFacadeIntellectualEditor_test.o debug\moc_DatabaseFacade_test.o debug\moc_DatabaseQueryProcessor_test.o
 
 distclean: clean 
 	-$(DEL_FILE) C:\Users\MCDead\Documents\itrader_algo\tests\build-ITraderTester-Desktop_Qt_6_3_1_MinGW_64_bit-Debug\target_wrapper.bat .qmake.stash
@@ -143,9 +207,9 @@ compiler_moc_predefs_clean:
 debug/moc_predefs.h: C:/Qt/6.3.1/mingw_64/mkspecs/features/data/dummy.cpp
 	g++ -fno-keep-inline-dllexport -g -Wall -Wextra -Wextra -dM -E -o debug\moc_predefs.h C:\Qt\6.3.1\mingw_64\mkspecs\features\data\dummy.cpp
 
-compiler_moc_header_make_all: debug/moc_DatabaseDriver_test.cpp debug/moc_DatabaseQueryProcessor_test.cpp
+compiler_moc_header_make_all: debug/moc_DatabaseDriver_test.cpp debug/moc_DatabaseFacadeIntellectualEditor_test.cpp debug/moc_DatabaseFacade_test.cpp debug/moc_DatabaseQueryProcessor_test.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) debug\moc_DatabaseDriver_test.cpp debug\moc_DatabaseQueryProcessor_test.cpp
+	-$(DEL_FILE) debug\moc_DatabaseDriver_test.cpp debug\moc_DatabaseFacadeIntellectualEditor_test.cpp debug\moc_DatabaseFacade_test.cpp debug\moc_DatabaseQueryProcessor_test.cpp
 debug/moc_DatabaseDriver_test.cpp: ../ITraderTester/database/DatabaseDriver_test.h \
 		C:/Qt/6.3.1/mingw_64/include/QtCore/QObject \
 		C:/Qt/6.3.1/mingw_64/include/QtCore/qobject.h \
@@ -402,6 +466,293 @@ debug/moc_DatabaseDriver_test.cpp: ../ITraderTester/database/DatabaseDriver_test
 		debug/moc_predefs.h \
 		C:/Qt/6.3.1/mingw_64/bin/moc.exe
 	C:\Qt\6.3.1\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MCDead/Documents/itrader_algo/tests/build-ITraderTester-Desktop_Qt_6_3_1_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.3.1/mingw_64/mkspecs/win32-g++ -IC:/Users/MCDead/Documents/itrader_algo/tests/ITraderTester -IC:/Qt/6.3.1/mingw_64/include -IC:/Qt/6.3.1/mingw_64/include/QtGui -IC:/Qt/6.3.1/mingw_64/include/QtTest -IC:/Qt/6.3.1/mingw_64/include/QtSql -IC:/Qt/6.3.1/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\ITraderTester\database\DatabaseDriver_test.h -o debug\moc_DatabaseDriver_test.cpp
+
+debug/moc_DatabaseFacadeIntellectualEditor_test.cpp: ../ITraderTester/database/DatabaseFacadeIntellectualEditor_test.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QObject \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobject.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnamespace.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qglobal.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qconfig-bootstrapped.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qconfig.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtcore-config.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtcoreexports.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsystemdetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qprocessordetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompilerdetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtypeinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsysinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qlogging.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qflags.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompare_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbasicatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic_bootstrap.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qgenericatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic_cxx11.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qglobalstatic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnumeric.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qversiontagging.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtmetamacros.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstring.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qchar.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearray.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qrefcount.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydata.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpair.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydatapointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydataops.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainertools_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringliteral.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qanystringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qutf8stringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringtokenizer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringbuilder.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qlist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiterator.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearraylist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringlist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringmatcher.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreevent.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qscopedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmetatype.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompare.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvarlengtharray.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qscopeguard.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdatastream.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiodevicebase.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiterable.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmetacontainer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainerinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtaggedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmath.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobject_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbindingstorage.h \
+		../../settings/DatabaseSettings.h \
+		../../database/DatabaseContext.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QString \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QHash \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qhash.h \
+		../../settings/SettingsInterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QSettings \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsettings.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvariant.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmap.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qshareddata.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qshareddata_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdebug.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtextstream.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringconverter.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qset.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		../../database/driver/DatabaseDriverFabric.h \
+		../../database/driver/DatabaseDriver.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlDatabase \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqldatabase.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsqlglobal.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsql-config.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsqlexports.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlError \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqlerror.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlQuery \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqlquery.h \
+		../../settings/SettingsManager.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QCoreApplication \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnativeinterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfuture.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmutex.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qresultstore.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfuture_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qthreadpool.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qthread.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qrunnable.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qexception.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpromise.h \
+		../../AppContext.h \
+		../../database/queryProcessor/DatabaseQueryProcessorFabric.h \
+		../../database/queryProcessor/DatabaseQueryProcessor.h \
+		../../database/facade/DatabaseFacadeIntellectualEditor.h \
+		../../database/facade/DatabaseFacade.h \
+		../../pattern/Pattern.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QVariant \
+		../../pattern/DatabaseEntity.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QVector \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvector.h \
+		../../TrendSolverContext.h \
+		../../pattern/PatternLine.h \
+		../../geometry/Line.h \
+		../../geometry/Dot.h \
+		../../pattern/LinePattern.h \
+		../../pattern/LinePatternStore.h \
+		../../error/ErrorDatabaseQueryError.h \
+		../../error/ErrorDatabase.h \
+		../../error/Error.h \
+		../../error/ErrorType.h \
+		../../error/ErrorDatabaseIncorrectQuery.h \
+		../../error/ErrorDatabaseIllegalState.h \
+		debug/moc_predefs.h \
+		C:/Qt/6.3.1/mingw_64/bin/moc.exe
+	C:\Qt\6.3.1\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MCDead/Documents/itrader_algo/tests/build-ITraderTester-Desktop_Qt_6_3_1_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.3.1/mingw_64/mkspecs/win32-g++ -IC:/Users/MCDead/Documents/itrader_algo/tests/ITraderTester -IC:/Qt/6.3.1/mingw_64/include -IC:/Qt/6.3.1/mingw_64/include/QtGui -IC:/Qt/6.3.1/mingw_64/include/QtTest -IC:/Qt/6.3.1/mingw_64/include/QtSql -IC:/Qt/6.3.1/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\ITraderTester\database\DatabaseFacadeIntellectualEditor_test.h -o debug\moc_DatabaseFacadeIntellectualEditor_test.cpp
+
+debug/moc_DatabaseFacade_test.cpp: ../ITraderTester/database/DatabaseFacade_test.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QObject \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobject.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnamespace.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qglobal.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qconfig-bootstrapped.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qconfig.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtcore-config.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtcoreexports.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsystemdetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qprocessordetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompilerdetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtypeinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsysinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qlogging.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qflags.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompare_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbasicatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic_bootstrap.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qgenericatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic_cxx11.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qglobalstatic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnumeric.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qversiontagging.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtmetamacros.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstring.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qchar.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearray.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qrefcount.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydata.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpair.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydatapointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydataops.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainertools_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringliteral.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qanystringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qutf8stringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringtokenizer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringbuilder.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qlist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiterator.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearraylist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringlist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringmatcher.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreevent.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qscopedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmetatype.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompare.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvarlengtharray.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qscopeguard.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdatastream.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiodevicebase.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiterable.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmetacontainer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainerinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtaggedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmath.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobject_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbindingstorage.h \
+		../../settings/DatabaseSettings.h \
+		../../database/DatabaseContext.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QString \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QHash \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qhash.h \
+		../../settings/SettingsInterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QSettings \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsettings.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvariant.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmap.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qshareddata.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qshareddata_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdebug.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtextstream.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringconverter.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qset.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		../../database/driver/DatabaseDriverFabric.h \
+		../../database/driver/DatabaseDriver.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlDatabase \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqldatabase.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsqlglobal.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsql-config.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsqlexports.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlError \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqlerror.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlQuery \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqlquery.h \
+		../../settings/SettingsManager.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QCoreApplication \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnativeinterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfuture.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmutex.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qresultstore.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfuture_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qthreadpool.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qthread.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qrunnable.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qexception.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpromise.h \
+		../../AppContext.h \
+		../../database/queryProcessor/DatabaseQueryProcessorFabric.h \
+		../../database/queryProcessor/DatabaseQueryProcessor.h \
+		../../database/facade/DatabaseFacade.h \
+		../../pattern/Pattern.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QVariant \
+		../../pattern/DatabaseEntity.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QVector \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvector.h \
+		../../TrendSolverContext.h \
+		../../pattern/PatternLine.h \
+		../../geometry/Line.h \
+		../../geometry/Dot.h \
+		../../pattern/LinePattern.h \
+		../../pattern/LinePatternStore.h \
+		../../error/ErrorDatabaseQueryError.h \
+		../../error/ErrorDatabase.h \
+		../../error/Error.h \
+		../../error/ErrorType.h \
+		../../error/ErrorDatabaseIncorrectQuery.h \
+		../../error/ErrorDatabaseIllegalState.h \
+		debug/moc_predefs.h \
+		C:/Qt/6.3.1/mingw_64/bin/moc.exe
+	C:\Qt\6.3.1\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MCDead/Documents/itrader_algo/tests/build-ITraderTester-Desktop_Qt_6_3_1_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.3.1/mingw_64/mkspecs/win32-g++ -IC:/Users/MCDead/Documents/itrader_algo/tests/ITraderTester -IC:/Qt/6.3.1/mingw_64/include -IC:/Qt/6.3.1/mingw_64/include/QtGui -IC:/Qt/6.3.1/mingw_64/include/QtTest -IC:/Qt/6.3.1/mingw_64/include/QtSql -IC:/Qt/6.3.1/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\ITraderTester\database\DatabaseFacade_test.h -o debug\moc_DatabaseFacade_test.cpp
 
 debug/moc_DatabaseQueryProcessor_test.cpp: ../ITraderTester/database/DatabaseQueryProcessor_test.h \
 		C:/Qt/6.3.1/mingw_64/include/QtCore/QObject \
@@ -1086,6 +1437,97 @@ debug/PatternLine.o: ../../pattern/PatternLine.cpp ../../pattern/PatternLine.h \
 		C:/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\PatternLine.o ..\..\pattern\PatternLine.cpp
 
+debug/LinePatternStore.o: ../../pattern/LinePatternStore.cpp ../../pattern/LinePatternStore.h \
+		../../pattern/LinePattern.h \
+		../../pattern/DatabaseEntity.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QVector \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvector.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qlist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydatapointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydataops.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydata.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpair.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qglobal.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qconfig-bootstrapped.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qconfig.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtcore-config.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtcoreexports.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsystemdetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qprocessordetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompilerdetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtypeinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsysinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qlogging.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qflags.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompare_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbasicatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic_bootstrap.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qgenericatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic_cxx11.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qglobalstatic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnumeric.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qversiontagging.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainertools_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnamespace.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtmetamacros.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstring.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qchar.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearray.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qrefcount.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringliteral.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qanystringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qutf8stringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringtokenizer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringbuilder.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiterator.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearraylist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringlist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringmatcher.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QHash \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qhash.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmath.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvariant.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmetatype.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompare.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvarlengtharray.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qscopeguard.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdatastream.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qscopedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiodevicebase.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiterable.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmetacontainer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainerinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtaggedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmap.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qshareddata.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qshareddata_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobject.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreevent.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobject_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbindingstorage.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdebug.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtextstream.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringconverter.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qset.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		../../geometry/Line.h \
+		../../TrendSolverContext.h \
+		../../geometry/Dot.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\LinePatternStore.o ..\..\pattern\LinePatternStore.cpp
+
 debug/DatabaseSettings.o: ../../settings/DatabaseSettings.cpp ../../settings/DatabaseSettings.h \
 		../../database/DatabaseContext.h \
 		C:/Qt/6.3.1/mingw_64/include/QtCore/QString \
@@ -1650,6 +2092,647 @@ debug/DatabaseQueryProcessorFabric.o: ../../database/queryProcessor/DatabaseQuer
 		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqlquery.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\DatabaseQueryProcessorFabric.o ..\..\database\queryProcessor\DatabaseQueryProcessorFabric.cpp
 
+debug/ErrorDatabase.o: ../../error/ErrorDatabase.cpp ../../error/ErrorDatabase.h \
+		../../error/Error.h \
+		../../error/ErrorType.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ErrorDatabase.o ..\..\error\ErrorDatabase.cpp
+
+debug/ErrorDatabaseIllegalState.o: ../../error/ErrorDatabaseIllegalState.cpp ../../error/ErrorDatabaseIllegalState.h \
+		../../error/ErrorDatabase.h \
+		../../error/Error.h \
+		../../error/ErrorType.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ErrorDatabaseIllegalState.o ..\..\error\ErrorDatabaseIllegalState.cpp
+
+debug/ErrorDatabaseIncorrectQuery.o: ../../error/ErrorDatabaseIncorrectQuery.cpp ../../error/ErrorDatabaseIncorrectQuery.h \
+		../../error/ErrorDatabase.h \
+		../../error/Error.h \
+		../../error/ErrorType.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ErrorDatabaseIncorrectQuery.o ..\..\error\ErrorDatabaseIncorrectQuery.cpp
+
+debug/ErrorDatabaseInitFailed.o: ../../error/ErrorDatabaseInitFailed.cpp ../../error/ErrorDatabaseInitFailed.h \
+		../../error/ErrorDatabase.h \
+		../../error/Error.h \
+		../../error/ErrorType.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ErrorDatabaseInitFailed.o ..\..\error\ErrorDatabaseInitFailed.cpp
+
+debug/ErrorDatabaseQueryError.o: ../../error/ErrorDatabaseQueryError.cpp ../../error/ErrorDatabaseQueryError.h \
+		../../error/ErrorDatabase.h \
+		../../error/Error.h \
+		../../error/ErrorType.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ErrorDatabaseQueryError.o ..\..\error\ErrorDatabaseQueryError.cpp
+
+debug/Error.o: ../../error/Error.cpp ../../error/Error.h \
+		../../error/ErrorType.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\Error.o ..\..\error\Error.cpp
+
+debug/ErrorApp.o: ../../error/ErrorApp.cpp ../../error/ErrorApp.h \
+		../../error/Error.h \
+		../../error/ErrorType.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ErrorApp.o ..\..\error\ErrorApp.cpp
+
+debug/ErrorAppIncorrectBehaviour.o: ../../error/ErrorAppIncorrectBehaviour.cpp ../../error/ErrorAppIncorrectBehaviour.h \
+		../../error/ErrorApp.h \
+		../../error/Error.h \
+		../../error/ErrorType.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ErrorAppIncorrectBehaviour.o ..\..\error\ErrorAppIncorrectBehaviour.cpp
+
+debug/ErrorSolver.o: ../../error/ErrorSolver.cpp ../../error/ErrorSolver.h \
+		../../error/Error.h \
+		../../error/ErrorType.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ErrorSolver.o ..\..\error\ErrorSolver.cpp
+
+debug/ErrorSolverInvalidInputData.o: ../../error/ErrorSolverInvalidInputData.cpp ../../error/ErrorSolverInvalidInputData.h \
+		../../error/ErrorSolver.h \
+		../../error/Error.h \
+		../../error/ErrorType.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ErrorSolverInvalidInputData.o ..\..\error\ErrorSolverInvalidInputData.cpp
+
+debug/DatabaseFacade.o: ../../database/facade/DatabaseFacade.cpp ../../database/facade/DatabaseFacade.h \
+		../../database/queryProcessor/DatabaseQueryProcessor.h \
+		../../database/driver/DatabaseDriver.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QString \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstring.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qchar.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qglobal.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qconfig-bootstrapped.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qconfig.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtcore-config.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtcoreexports.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsystemdetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qprocessordetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompilerdetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtypeinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsysinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qlogging.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qflags.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompare_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbasicatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic_bootstrap.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qgenericatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic_cxx11.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qglobalstatic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnumeric.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qversiontagging.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearray.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qrefcount.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnamespace.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtmetamacros.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydata.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpair.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydatapointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydataops.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainertools_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringliteral.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qanystringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qutf8stringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringtokenizer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringbuilder.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlDatabase \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqldatabase.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsqlglobal.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsql-config.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsqlexports.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlError \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqlerror.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlQuery \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqlquery.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvariant.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qlist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiterator.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearraylist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringlist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringmatcher.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmetatype.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompare.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvarlengtharray.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qscopeguard.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdatastream.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qscopedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiodevicebase.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiterable.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmetacontainer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainerinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtaggedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmath.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmap.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qshareddata.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qshareddata_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qhash.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobject.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreevent.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobject_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbindingstorage.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdebug.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtextstream.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringconverter.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qset.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		../../database/DatabaseContext.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QHash \
+		../../settings/SettingsManager.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QCoreApplication \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnativeinterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfuture.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmutex.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qresultstore.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfuture_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qthreadpool.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qthread.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qrunnable.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qexception.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpromise.h \
+		../../AppContext.h \
+		../../settings/DatabaseSettings.h \
+		../../settings/SettingsInterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QSettings \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsettings.h \
+		../../pattern/Pattern.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QVariant \
+		../../pattern/DatabaseEntity.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QVector \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvector.h \
+		../../TrendSolverContext.h \
+		../../pattern/PatternLine.h \
+		../../geometry/Line.h \
+		../../geometry/Dot.h \
+		../../pattern/LinePattern.h \
+		../../pattern/LinePatternStore.h \
+		../../error/ErrorDatabaseQueryError.h \
+		../../error/ErrorDatabase.h \
+		../../error/Error.h \
+		../../error/ErrorType.h \
+		../../error/ErrorDatabaseIncorrectQuery.h \
+		../../error/ErrorDatabaseIllegalState.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\DatabaseFacade.o ..\..\database\facade\DatabaseFacade.cpp
+
+debug/DatabaseFacadeIntellectualEditor.o: ../../database/facade/DatabaseFacadeIntellectualEditor.cpp ../../database/facade/DatabaseFacadeIntellectualEditor.h \
+		../../database/facade/DatabaseFacade.h \
+		../../database/queryProcessor/DatabaseQueryProcessor.h \
+		../../database/driver/DatabaseDriver.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QString \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstring.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qchar.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qglobal.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qconfig-bootstrapped.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qconfig.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtcore-config.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtcoreexports.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsystemdetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qprocessordetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompilerdetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtypeinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsysinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qlogging.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qflags.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompare_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbasicatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic_bootstrap.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qgenericatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic_cxx11.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qglobalstatic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnumeric.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qversiontagging.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearray.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qrefcount.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnamespace.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtmetamacros.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydata.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpair.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydatapointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydataops.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainertools_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringliteral.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qanystringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qutf8stringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringtokenizer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringbuilder.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlDatabase \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqldatabase.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsqlglobal.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsql-config.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsqlexports.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlError \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqlerror.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlQuery \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqlquery.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvariant.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qlist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiterator.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearraylist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringlist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringmatcher.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmetatype.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompare.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvarlengtharray.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qscopeguard.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdatastream.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qscopedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiodevicebase.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiterable.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmetacontainer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainerinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtaggedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmath.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmap.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qshareddata.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qshareddata_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qhash.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobject.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreevent.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobject_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbindingstorage.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdebug.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtextstream.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringconverter.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qset.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		../../database/DatabaseContext.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QHash \
+		../../settings/SettingsManager.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QCoreApplication \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnativeinterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfuture.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmutex.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qresultstore.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfuture_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qthreadpool.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qthread.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qrunnable.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qexception.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpromise.h \
+		../../AppContext.h \
+		../../settings/DatabaseSettings.h \
+		../../settings/SettingsInterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QSettings \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsettings.h \
+		../../pattern/Pattern.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QVariant \
+		../../pattern/DatabaseEntity.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QVector \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvector.h \
+		../../TrendSolverContext.h \
+		../../pattern/PatternLine.h \
+		../../geometry/Line.h \
+		../../geometry/Dot.h \
+		../../pattern/LinePattern.h \
+		../../pattern/LinePatternStore.h \
+		../../error/ErrorDatabaseQueryError.h \
+		../../error/ErrorDatabase.h \
+		../../error/Error.h \
+		../../error/ErrorType.h \
+		../../error/ErrorDatabaseIncorrectQuery.h \
+		../../error/ErrorDatabaseIllegalState.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\DatabaseFacadeIntellectualEditor.o ..\..\database\facade\DatabaseFacadeIntellectualEditor.cpp
+
+debug/DatabaseFacadeIntellectualEditor_test.o: ../ITraderTester/database/DatabaseFacadeIntellectualEditor_test.cpp ../ITraderTester/database/DatabaseFacadeIntellectualEditor_test.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QObject \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobject.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnamespace.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qglobal.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qconfig-bootstrapped.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qconfig.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtcore-config.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtcoreexports.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsystemdetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qprocessordetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompilerdetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtypeinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsysinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qlogging.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qflags.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompare_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbasicatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic_bootstrap.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qgenericatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic_cxx11.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qglobalstatic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnumeric.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qversiontagging.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtmetamacros.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstring.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qchar.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearray.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qrefcount.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydata.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpair.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydatapointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydataops.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainertools_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringliteral.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qanystringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qutf8stringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringtokenizer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringbuilder.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qlist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiterator.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearraylist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringlist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringmatcher.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreevent.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qscopedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmetatype.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompare.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvarlengtharray.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qscopeguard.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdatastream.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiodevicebase.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiterable.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmetacontainer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainerinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtaggedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmath.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobject_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbindingstorage.h \
+		../../settings/DatabaseSettings.h \
+		../../database/DatabaseContext.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QString \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QHash \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qhash.h \
+		../../settings/SettingsInterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QSettings \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsettings.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvariant.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmap.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qshareddata.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qshareddata_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdebug.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtextstream.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringconverter.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qset.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		../../database/driver/DatabaseDriverFabric.h \
+		../../database/driver/DatabaseDriver.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlDatabase \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqldatabase.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsqlglobal.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsql-config.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsqlexports.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlError \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqlerror.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlQuery \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqlquery.h \
+		../../settings/SettingsManager.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QCoreApplication \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnativeinterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfuture.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmutex.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qresultstore.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfuture_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qthreadpool.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qthread.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qrunnable.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qexception.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpromise.h \
+		../../AppContext.h \
+		../../database/queryProcessor/DatabaseQueryProcessorFabric.h \
+		../../database/queryProcessor/DatabaseQueryProcessor.h \
+		../../database/facade/DatabaseFacadeIntellectualEditor.h \
+		../../database/facade/DatabaseFacade.h \
+		../../pattern/Pattern.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QVariant \
+		../../pattern/DatabaseEntity.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QVector \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvector.h \
+		../../TrendSolverContext.h \
+		../../pattern/PatternLine.h \
+		../../geometry/Line.h \
+		../../geometry/Dot.h \
+		../../pattern/LinePattern.h \
+		../../pattern/LinePatternStore.h \
+		../../error/ErrorDatabaseQueryError.h \
+		../../error/ErrorDatabase.h \
+		../../error/Error.h \
+		../../error/ErrorType.h \
+		../../error/ErrorDatabaseIncorrectQuery.h \
+		../../error/ErrorDatabaseIllegalState.h \
+		C:/Qt/6.3.1/mingw_64/include/QtTest/qtestcase.h \
+		C:/Qt/6.3.1/mingw_64/include/QtTest/qttestglobal.h \
+		C:/Qt/6.3.1/mingw_64/include/QtTest/qttestlib-config.h \
+		C:/Qt/6.3.1/mingw_64/include/QtTest/qttestexports.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmetaobject.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtemporarydir.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdir.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfile.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiodevice.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfileinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdatetime.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcalendar.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qlocale.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\DatabaseFacadeIntellectualEditor_test.o ..\ITraderTester\database\DatabaseFacadeIntellectualEditor_test.cpp
+
+debug/DatabaseFacade_test.o: ../ITraderTester/database/DatabaseFacade_test.cpp ../ITraderTester/database/DatabaseFacade_test.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QObject \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobject.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnamespace.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qglobal.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qconfig-bootstrapped.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qconfig.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtcore-config.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtcoreexports.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsystemdetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qprocessordetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompilerdetection.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtypeinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsysinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qlogging.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qflags.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompare_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbasicatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic_bootstrap.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qgenericatomic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qatomic_cxx11.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qglobalstatic.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnumeric.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qversiontagging.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtmetamacros.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstring.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qchar.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearray.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qrefcount.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydata.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpair.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydatapointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qarraydataops.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainertools_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringliteral.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qanystringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qutf8stringview.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringtokenizer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringbuilder.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qlist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiterator.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbytearraylist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringlist.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qalgorithms.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringmatcher.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreevent.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qscopedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmetatype.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcompare.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvarlengtharray.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qscopeguard.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdatastream.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiodevicebase.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiterable.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmetacontainer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontainerinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtaggedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmath.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qobject_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qbindingstorage.h \
+		../../settings/DatabaseSettings.h \
+		../../database/DatabaseContext.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QString \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QHash \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qhash.h \
+		../../settings/SettingsInterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QSettings \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsettings.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvariant.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmap.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qshareddata.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qshareddata_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdebug.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtextstream.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qstringconverter.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qset.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		../../database/driver/DatabaseDriverFabric.h \
+		../../database/driver/DatabaseDriver.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlDatabase \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqldatabase.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsqlglobal.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsql-config.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qtsqlexports.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlError \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqlerror.h \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/QSqlQuery \
+		C:/Qt/6.3.1/mingw_64/include/QtSql/qsqlquery.h \
+		../../settings/SettingsManager.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QCoreApplication \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qnativeinterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfuture.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmutex.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qresultstore.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfuture_impl.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qthreadpool.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qthread.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qrunnable.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qexception.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpointer.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qpromise.h \
+		../../AppContext.h \
+		../../database/queryProcessor/DatabaseQueryProcessorFabric.h \
+		../../database/queryProcessor/DatabaseQueryProcessor.h \
+		../../database/facade/DatabaseFacade.h \
+		../../pattern/Pattern.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QVariant \
+		../../pattern/DatabaseEntity.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/QVector \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qvector.h \
+		../../TrendSolverContext.h \
+		../../pattern/PatternLine.h \
+		../../geometry/Line.h \
+		../../geometry/Dot.h \
+		../../pattern/LinePattern.h \
+		../../pattern/LinePatternStore.h \
+		../../error/ErrorDatabaseQueryError.h \
+		../../error/ErrorDatabase.h \
+		../../error/Error.h \
+		../../error/ErrorType.h \
+		../../error/ErrorDatabaseIncorrectQuery.h \
+		../../error/ErrorDatabaseIllegalState.h \
+		C:/Qt/6.3.1/mingw_64/include/QtTest/qtestcase.h \
+		C:/Qt/6.3.1/mingw_64/include/QtTest/qttestglobal.h \
+		C:/Qt/6.3.1/mingw_64/include/QtTest/qttestlib-config.h \
+		C:/Qt/6.3.1/mingw_64/include/QtTest/qttestexports.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qmetaobject.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qtemporarydir.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdir.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfile.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qiodevice.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qfileinfo.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qdatetime.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qcalendar.h \
+		C:/Qt/6.3.1/mingw_64/include/QtCore/qlocale.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\DatabaseFacade_test.o ..\ITraderTester\database\DatabaseFacade_test.cpp
+
 debug/DatabaseQueryProcessor_test.o: ../ITraderTester/database/DatabaseQueryProcessor_test.cpp ../ITraderTester/database/DatabaseQueryProcessor_test.h \
 		C:/Qt/6.3.1/mingw_64/include/QtCore/QObject \
 		C:/Qt/6.3.1/mingw_64/include/QtCore/qobject.h \
@@ -2172,11 +3255,28 @@ debug/main.o: ../ITraderTester/main.cpp C:/Qt/6.3.1/mingw_64/include/QtTest/QtTe
 		../../pattern/PatternLine.h \
 		../../geometry/Line.h \
 		../../geometry/Dot.h \
-		../../pattern/LinePattern.h
+		../../pattern/LinePattern.h \
+		../ITraderTester/database/DatabaseFacade_test.h \
+		../../database/facade/DatabaseFacade.h \
+		../../pattern/LinePatternStore.h \
+		../../error/ErrorDatabaseQueryError.h \
+		../../error/ErrorDatabase.h \
+		../../error/Error.h \
+		../../error/ErrorType.h \
+		../../error/ErrorDatabaseIncorrectQuery.h \
+		../../error/ErrorDatabaseIllegalState.h \
+		../ITraderTester/database/DatabaseFacadeIntellectualEditor_test.h \
+		../../database/facade/DatabaseFacadeIntellectualEditor.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\ITraderTester\main.cpp
 
 debug/moc_DatabaseDriver_test.o: debug/moc_DatabaseDriver_test.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_DatabaseDriver_test.o debug\moc_DatabaseDriver_test.cpp
+
+debug/moc_DatabaseFacadeIntellectualEditor_test.o: debug/moc_DatabaseFacadeIntellectualEditor_test.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_DatabaseFacadeIntellectualEditor_test.o debug\moc_DatabaseFacadeIntellectualEditor_test.cpp
+
+debug/moc_DatabaseFacade_test.o: debug/moc_DatabaseFacade_test.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_DatabaseFacade_test.o debug\moc_DatabaseFacade_test.cpp
 
 debug/moc_DatabaseQueryProcessor_test.o: debug/moc_DatabaseQueryProcessor_test.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_DatabaseQueryProcessor_test.o debug\moc_DatabaseQueryProcessor_test.cpp

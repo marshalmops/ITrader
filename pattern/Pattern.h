@@ -47,6 +47,11 @@ private:
     
 public:
     Pattern();
+    Pattern(const std::string& name,
+            const float probability,
+            const Trend prevTrend,
+            const Trend futureTrend,
+            std::vector<PatternLine> &&patternLines);
     Pattern(const uint64_t id,
             const std::string& name,
             const float probability,
