@@ -16,6 +16,8 @@ private:
                                                              const Pattern::Trend prevTrend,
                                                              const Pattern::Trend futureTrend,
                                                              std::shared_ptr<Pattern> &gottenPattern);
+    std::unique_ptr<ErrorDatabase> insertLineOfPattern(const PatternLine &patternLine,
+                                                       const std::shared_ptr<Pattern> &pattern);
 };
 
 #endif // DATABASEFACADEINTELLECTUALEDITOR_H

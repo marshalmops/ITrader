@@ -55,6 +55,13 @@ void DatabaseFacadeIntellectualEditor_test::checkPatternInsert_test()
                                                                   std::move(newPatternLines))};
     
     QVERIFY(m_dbFacade->insertPattern(newPattern).get() == nullptr);
+    
+    std::vector<std::shared_ptr<Pattern>> patterns{};
+    
+    QVERIFY(m_dbFacade->getPatterns(patterns).get() == nullptr);
+    QVERIFY(patterns.size() == m_patterns.size() + 1);
+    
+    m_patterns = std::move(patterns);
 }
 
 /*
@@ -63,7 +70,7 @@ void DatabaseFacadeIntellectualEditor_test::checkPatternInsert_test()
 
 void DatabaseFacadeIntellectualEditor_test::checkPatternDelete_test()
 {
-    auto patternDoDelete{m_patterns.back()};
+    auto patternToDelete{m_patterns.back()};
     
-    QVERIFY(m_dbFacade->deletePattern(patternDoDelete).get() == nullptr);
+    QVERIFY(m_dbFacade->deletePattern(patternToDelete).get() == nullptr);
 }

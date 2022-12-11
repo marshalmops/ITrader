@@ -47,21 +47,10 @@ std::unique_ptr<ErrorDatabase> DatabaseFacadeIntellectualEditor::insertPattern(c
     // inserting LINES of pattern:
     
     for (const auto& line : pattern->getPatternLines()) {
-        std::vector<std::string> paramVector{
-            PatternLine::C_DATABASE_PATTERN_ID_PROP, 
-            PatternLine::C_DATABASE_LINE_ID_PROP, 
-            PatternLine::C_DATABASE_LINE_INDEX_PROP, 
-            PatternLine::C_DATABASE_LINE_SIDE_PROP
-        };
-        std::vector<std::string> valueVector{
-            std::to_string(insertedPattern->getId()),
-            std::to_string(line.getLineId()),
-            std::to_string(line.getIndex()),
-            std::to_string(static_cast<Line::SideType>(line.getSide()))
-        };
+        std::unique_ptr<ErrorDatabase> insertionQueryError{};
         
-        if (!m_processor->execInsertQuery(PatternLine::C_DATABASE_TABLE_NAME, valueVector, paramVector))
-            return std::make_unique<ErrorDatabaseQueryError>();
+        if ((insertionQueryError = insertLineOfPattern(line, insertedPattern)).get())
+            return std::move(insertionQueryError);
     }
     
     return std::unique_ptr<ErrorDatabase>(nullptr);
@@ -127,6 +116,31 @@ std::unique_ptr<ErrorDatabase> DatabaseFacadeIntellectualEditor::getPatternByNam
         return std::make_unique<ErrorDatabaseQueryError>();
     
     gottenPattern = loadedPattern;
+    
+    return std::unique_ptr<ErrorDatabase>{nullptr};
+}
+
+std::unique_ptr<ErrorDatabase> DatabaseFacadeIntellectualEditor::insertLineOfPattern(const PatternLine &patternLine,
+                                                                                     const std::shared_ptr<Pattern> &pattern)
+{
+    if (!pattern.get()) 
+        return std::make_unique<ErrorDatabaseIllegalState>();
+    
+    std::vector<std::string> paramVector{
+        PatternLine::C_DATABASE_PATTERN_ID_PROP, 
+        PatternLine::C_DATABASE_LINE_ID_PROP, 
+        PatternLine::C_DATABASE_LINE_INDEX_PROP, 
+        PatternLine::C_DATABASE_LINE_SIDE_PROP
+    };
+    std::vector<std::string> valueVector{
+        std::to_string(pattern->getId()),
+        std::to_string(patternLine.getLineId()),
+        std::to_string(patternLine.getIndex()),
+        std::to_string(static_cast<Line::SideType>(patternLine.getSide()))
+    };
+    
+    if (!m_processor->execInsertQuery(PatternLine::C_DATABASE_TABLE_NAME, valueVector, paramVector))
+        return std::make_unique<ErrorDatabaseQueryError>();
     
     return std::unique_ptr<ErrorDatabase>{nullptr};
 }

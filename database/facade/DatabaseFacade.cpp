@@ -85,22 +85,6 @@ std::unique_ptr<ErrorDatabase> DatabaseFacade::getPatterns(std::vector<std::shar
     std::vector<std::shared_ptr<Pattern>> loadedPatterns{};
     
     while (query->next()) {
-//        QVariant idVariant         {query->value(Pattern::C_DATABASE_ID_PROP)};
-//        QVariant nameVariant       {query->value(Pattern::C_DATABASE_NAME_PROP)};
-//        QVariant probabilityVariant{query->value(Pattern::C_DATABASE_PROBABILITY_PROP)};
-//        QVariant countOfUsesVariant{query->value(Pattern::C_DATABASE_USE_COUNT_PROP)};
-//        QVariant prevTrendVariant  {query->value(Pattern::C_DATABASE_PREV_TREND_PROP)};
-//        QVariant futureTrendVariant{query->value(Pattern::C_DATABASE_FUTURE_TREND_PROP)};
-        
-//        QHash<QString, QVariant> patternStringVariantHash{
-//            {Pattern::C_DATABASE_ID_PROP,           idVariant},
-//            {Pattern::C_DATABASE_NAME_PROP,         nameVariant},
-//            {Pattern::C_DATABASE_PROBABILITY_PROP,  probabilityVariant},
-//            {Pattern::C_DATABASE_USE_COUNT_PROP,    countOfUsesVariant},
-//            {Pattern::C_DATABASE_PREV_TREND_PROP,   prevTrendVariant},
-//            {Pattern::C_DATABASE_FUTURE_TREND_PROP, futureTrendVariant}
-//        };
-        
         QHash<QString, QVariant> patternStringVariantHash{};
         
         if (!getPatternStringVariantHashWithQuery(query, patternStringVariantHash))
