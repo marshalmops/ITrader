@@ -35,6 +35,8 @@ SOURCES += \
         pattern/Pattern.cpp \
         pattern/PatternLine.cpp \
         pattern/PatternStore.cpp \
+        pattern/StagePatternLineContainer.cpp \
+        qcustomplot/qcustomplot.cpp \
         settings/DatabaseSettings.cpp \
         settings/SettingsManager.cpp \
         geometry/StageLineContainer.cpp \
@@ -79,6 +81,8 @@ HEADERS += \
     pattern/Pattern.h \
     pattern/PatternLine.h \
     pattern/PatternStore.h \
+    pattern/StagePatternLineContainer.h \
+    qcustomplot/qcustomplot.h \
     settings/DatabaseSettings.h \
     settings/SettingsInterface.h \
     settings/SettingsManager.h \
@@ -87,4 +91,4 @@ HEADERS += \
     TrendSolver.h \
     TrendSolverContext.h
 
-QT += widgets sql
+QT += widgets sql printsupport

@@ -1,24 +1,26 @@
 #include "TrendSolver.h"
 
 namespace {
-    std::shared_ptr<Pattern> getMostProbablePattern(const std::vector<std::vector<StagePatternContainer>> &foundPatternsOnStages)
+    std::shared_ptr<StagePatternLineContainer> getMostProbablePatternLineContainer(const std::vector<std::vector<std::shared_ptr<StagePatternContainer>>> &foundPatternsOnStages)
     {
         if (foundPatternsOnStages.empty()) 
-            return std::unique_ptr<Pattern>(nullptr);
+            return std::shared_ptr<StagePatternLineContainer>(nullptr);
         
-        std::shared_ptr<Pattern> mostProbablePattern{nullptr};
+        std::shared_ptr<StagePatternLineContainer> mostProbablePattern{nullptr};
         
         for (const auto& foundPatternsOnStage : foundPatternsOnStages) {
             for (const auto& stagePatternContainer : foundPatternsOnStage) {
-                for (const auto& curPattern : stagePatternContainer.getPatterns()) {
+                for (const auto& curPatternLineContainer : stagePatternContainer->getPatternLineContainers()) {
                     if (!mostProbablePattern.get()) {
-                        mostProbablePattern = curPattern;
+                        mostProbablePattern = curPatternLineContainer;
                         
                         continue;
                     }
                     
-                    if (mostProbablePattern->getProbability() < curPattern->getProbability()) {
-                        mostProbablePattern = curPattern;
+                    if (mostProbablePattern->getPattern()->getProbability()
+                      < curPatternLineContainer->getPattern()->getProbability())
+                    {
+                        mostProbablePattern = curPatternLineContainer;
                     }
                             
                 }
@@ -360,7 +362,7 @@ namespace {
                              const std::vector<std::shared_ptr<Line>> &upLines,
                              const std::vector<std::shared_ptr<Line>> &downLines,
                              const Pattern::Trend prevTrend,
-                             std::vector<std::shared_ptr<Pattern>> &foundPatterns)
+                             std::vector<std::shared_ptr<StagePatternLineContainer>> &foundPatternLineContainers)
     {
         if (patterns.empty() || (upLines.empty() && downLines.empty()))
             return false;
@@ -400,7 +402,8 @@ namespace {
                 continue;
             
             if (pattern->findInLinesFromBack(upPatternLines, downPatternLines))
-                foundPatterns.push_back(pattern);
+                foundPatternLineContainers.push_back(std::make_shared<StagePatternLineContainer>(upLines, downLines, pattern));
+                //foundPatterns.push_back(pattern);
         }
         
         return true;
@@ -409,48 +412,50 @@ namespace {
     void findPatterns(const std::vector<std::shared_ptr<Pattern>> &patterns, 
                       const std::vector<std::shared_ptr<StageLineContainer>> &stages,
                       const Pattern::Trend prevTrend,
-                      std::vector<StagePatternContainer> &foundPatternsOnStages)
+                      std::vector<std::shared_ptr<StagePatternContainer>> &foundPatternsOnStages)
     {
         const std::shared_ptr<StageLineContainer> lastStage{stages.back()};
         const int stagesCount = stages.size();
         
         for (int8_t i = stagesCount - 1; i >= 0; --i) {
-            const std::shared_ptr<StageLineContainer> curPrevStage = stages.at(i);
-            std::vector<std::shared_ptr<Pattern>> foundLastUpPatternsOnStage{};
+            std::shared_ptr<StagePatternContainer> curStagePatterns{std::make_shared<StagePatternContainer>()};
             
-            // last upLines to prev downLines...
+            const std::shared_ptr<StageLineContainer> curPrevStage = stages.at(i);
+            std::vector<std::shared_ptr<StagePatternLineContainer>> foundLastUpPatternLinesOnStage{};
             
             if (!findPatternsInLines(patterns,
                                     lastStage->getUpLines(), 
                                     curPrevStage->getDownLines(),
                                     prevTrend,
-                                    foundLastUpPatternsOnStage))
+                                    foundLastUpPatternLinesOnStage))
             {
                 return;
             }
             
-            foundPatternsOnStages.push_back(StagePatternContainer(lastStage->getUpLines(),
-                                                                  curPrevStage->getDownLines(),
-                                                                  std::move(foundLastUpPatternsOnStage)));
+            curStagePatterns->addPatternLineContainers(foundLastUpPatternLinesOnStage);
+            //curStagePatterns.addPatternLineContainer(std::make_shared<StagePatternLineContainer>(foundLastUpPatternLinesOnStage));
             
-            if (i == stagesCount - 1) continue;  
+            if (i == stagesCount - 1) {
+                foundPatternsOnStages.push_back(curStagePatterns);
+                
+                continue;  
+            }
             
-            // last downLines to prev upLines...
-            
-            std::vector<std::shared_ptr<Pattern>> foundLastDownPatternsOnStage{};
+            std::vector<std::shared_ptr<StagePatternLineContainer>> foundLastDownPatternLinesOnStage{};
             
             if (!findPatternsInLines(patterns,
                                     curPrevStage->getUpLines(), 
                                     lastStage->getDownLines(),
                                     prevTrend,
-                                    foundLastDownPatternsOnStage))
+                                    foundLastDownPatternLinesOnStage))
             {
                 return;
             }
             
-            foundPatternsOnStages.push_back(StagePatternContainer(curPrevStage->getUpLines(),
-                                                                  lastStage->getDownLines(),
-                                                                  foundLastDownPatternsOnStage));
+            curStagePatterns->addPatternLineContainers(foundLastDownPatternLinesOnStage);
+            //curStagePatterns.addPatternLineContainer(std::make_shared<StagePatternLineContainer>(foundLastDownPatternLinesOnStage));
+            
+            foundPatternsOnStages.push_back(curStagePatterns);
         }
     }
     
@@ -659,11 +664,11 @@ void TrendSolver::analyseDots(const QList<uint64_t> inputDots)
     
     stages.push_back(initStageLines);
     
-    std::vector<StagePatternContainer> foundInitPatterns{};
+    std::vector<std::shared_ptr<StagePatternContainer>> foundInitPatterns{};
     
     findPatterns(patterns, stages, prevTrend, foundInitPatterns);
     
-    std::vector<std::vector<StagePatternContainer>> foundPatternsOnStages{};
+    std::vector<std::vector<std::shared_ptr<StagePatternContainer>>> foundPatternsOnStages{};
     
     foundPatternsOnStages.push_back(std::move(foundInitPatterns));
     
@@ -707,7 +712,7 @@ void TrendSolver::analyseDots(const QList<uint64_t> inputDots)
         std::unique_ptr<Line> upLineByBroading  {getBroadingStageLines(dots, prevStage->getUpLines())};
         std::unique_ptr<Line> downLineByBroading{getBroadingStageLines(dots, prevStage->getDownLines())};        
         
-        std::vector<StagePatternContainer> foundPatternsOnStage{};
+        std::vector<std::shared_ptr<StagePatternContainer>> foundPatternsOnStage{};
         
         if (upLinesByBreaking.empty() && downLinesByBreaking.empty() 
         && !upLineByBroading.get() && !downLineByBroading.get())
@@ -736,7 +741,7 @@ void TrendSolver::analyseDots(const QList<uint64_t> inputDots)
     
     // getting most PROBABLE pattern:
     
-    std::shared_ptr<Pattern> mostProbablePattern = getMostProbablePattern(foundPatternsOnStages);
+    std::shared_ptr<StagePatternLineContainer> mostProbablePatternLinesContainer = getMostProbablePatternLineContainer(foundPatternsOnStages);
     
-    emit patternGotten(mostProbablePattern);
+    emit patternGotten(mostProbablePatternLinesContainer, dots);
 }

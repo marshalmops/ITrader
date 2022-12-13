@@ -1,23 +1,30 @@
 #include "StagePatternContainer.h"
 
-StagePatternContainer::StagePatternContainer(const std::vector<std::shared_ptr<Line>> &upLines,
-                                             const std::vector<std::shared_ptr<Line>> &downLines,
-                                             const std::vector<std::shared_ptr<Pattern>> &patterns)
-    : m_upLines{upLines},
-      m_downLines{downLines},
-      m_patterns{std::move(patterns)}
+StagePatternContainer::StagePatternContainer(const std::vector<std::shared_ptr<StagePatternLineContainer>> &patternLineContainers)
+    : m_patternLineContainers{patternLineContainers}
 {
     
 }
 
-const std::vector<std::shared_ptr<Line>>& StagePatternContainer::getUpLines() const {
-    return m_upLines;
+const std::vector<std::shared_ptr<StagePatternLineContainer>> &StagePatternContainer::getPatternLineContainers() const
+{
+    return m_patternLineContainers;
 }
 
-const std::vector<std::shared_ptr<Line>>& StagePatternContainer::getDownLines() const {
-    return m_downLines;
+bool StagePatternContainer::addPatternLineContainer(const std::shared_ptr<StagePatternLineContainer> &patternLineContainer)
+{
+    if (!patternLineContainer.get()) return false;
+    
+    m_patternLineContainers.push_back(patternLineContainer);
+    
+    return true;
 }
 
-const std::vector<std::shared_ptr<Pattern>>& StagePatternContainer::getPatterns() const {
-    return m_patterns;
+bool StagePatternContainer::addPatternLineContainers(const std::vector<std::shared_ptr<StagePatternLineContainer> > &patternLineContainers)
+{
+    if (patternLineContainers.empty()) return false;
+    
+    m_patternLineContainers.insert(m_patternLineContainers.end(), patternLineContainers.begin(), patternLineContainers.end());
+    
+    return true;
 }

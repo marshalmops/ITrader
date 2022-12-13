@@ -24,7 +24,8 @@ public:
 signals:
     void errorOccurred(const std::shared_ptr<ErrorSolver> error);
     
-    void patternGotten    (const std::shared_ptr<Pattern> pattern);
+    void patternGotten    (const std::shared_ptr<StagePatternLineContainer> pattern,
+                           const std::vector<std::shared_ptr<Dot>> dots);
     void finalLinesChoosen(const std::shared_ptr<StageLineContainer> choosenLines);
     
 public slots:

@@ -9,9 +9,11 @@
 #include <QLabel>
 #include <QPushButton>
 
+#include "qcustomplot/qcustomplot.h"
+
 #include "error/Error.h"
 
-#include "pattern/Pattern.h"
+#include "pattern/StagePatternLineContainer.h"
 
 #include "SettingsView.h"
 
@@ -37,11 +39,13 @@ signals:
 public slots:
     void openSettings();
     
-    void showChoosenPattern(const std::shared_ptr<Pattern> pattern);
+    void showChoosenPattern(const std::shared_ptr<StagePatternLineContainer> pattern, 
+                            const std::vector<std::shared_ptr<Dot>> dots);
     
 private:
-    QTableView *m_costDotsTableView;
-    QTextEdit  *m_patternOutput;
+    QTableView  *m_costDotsTableView;
+    QTextEdit   *m_patternOutput;
+    QCustomPlot *m_plot;
 };
 
 #endif // MAINWINDOWVIEW_H

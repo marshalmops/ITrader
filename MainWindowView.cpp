@@ -30,12 +30,23 @@ MainWindowView::MainWindowView(QTableView *tableView,
     
     QLabel *patternOutputText = new QLabel{tr("Pattern output:")};
     
+    m_plot          = new QCustomPlot{};
     m_patternOutput = new QTextEdit{};
+    
+    m_plot->setMinimumWidth(320);
+    
+    m_plot->xAxis->setRange(0, TrendSolverContext::C_MIN_COUNT_OF_DOTS_TO_ANALIZE);
+    m_plot->yAxis->setRange(0, 100);
+    
+    QHBoxLayout *patternOutputShowLayout = new QHBoxLayout{};
+    
+    patternOutputShowLayout->addWidget(m_plot);
+    patternOutputShowLayout->addWidget(m_patternOutput);
     
     QVBoxLayout *patternOutputLayout = new QVBoxLayout{};
     
     patternOutputLayout->addWidget(patternOutputText);
-    patternOutputLayout->addWidget(m_patternOutput);
+    patternOutputLayout->addLayout(patternOutputShowLayout);
     
     QVBoxLayout *inputOuputLayout = new QVBoxLayout{};
     
@@ -71,10 +82,40 @@ void MainWindowView::openSettings()
         emit settingsChanged();
 }
 
-void MainWindowView::showChoosenPattern(const std::shared_ptr<Pattern> pattern)
+void MainWindowView::showChoosenPattern(const std::shared_ptr<StagePatternLineContainer> patternLineContainer, 
+                                        const std::vector<std::shared_ptr<Dot>> dots)
 {
-    if (!pattern.get())
+    if (!patternLineContainer.get()) {
         m_patternOutput->setText(tr("No patterns!"));
-    else
-        m_patternOutput->setText(pattern->toString());
+        
+        return;
+    }
+    
+    m_patternOutput->setText(patternLineContainer->getPattern()->toString());
+    
+    m_plot->clearGraphs();
+    
+    m_plot->addGraph();
+            
+    for (const auto &dot : dots)
+        m_plot->graph(0)->addData(dot->getX(), dot->getY());
+    
+    auto drawSideLinesLambda = [&](const std::vector<std::shared_ptr<Line>> &sideLines) {
+        for (const auto &sideLine : sideLines) {
+            auto* graph = m_plot->addGraph();
+            
+            graph->setPen(QPen(Qt::red));
+            
+            auto firstDot  = sideLine->getFirst();
+            auto secondDot = sideLine->getSecond();
+            
+            graph->addData(firstDot->getX(),  firstDot->getY());
+            graph->addData(secondDot->getX(), secondDot->getY());
+        }
+    };
+    
+    drawSideLinesLambda(patternLineContainer->getUpLines());
+    drawSideLinesLambda(patternLineContainer->getDownLines());
+    
+    m_plot->replot();
 }
