@@ -10,7 +10,7 @@
 class SettingsManager
 {
 private:
-    static std::shared_ptr<SettingsManager> m_instance;
+    static std::shared_ptr<SettingsManager> s_instance;
     
     std::shared_ptr<DatabaseSettings> m_dbSettings;
     

@@ -10,6 +10,8 @@ class DatabaseFacadeTrendSolver : public DatabaseFacade
 {
 public:
     DatabaseFacadeTrendSolver(const std::shared_ptr<DatabaseQueryProcessor> &processor);
+    
+    // TODO: countOfUse update method...
 };
 
 #endif // DATABASEFACADETRENDSOLVER_H

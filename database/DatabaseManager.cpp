@@ -30,22 +30,22 @@ bool DatabaseManager::initWithSettings()
     
     if (!dbQueryProcResult) return false;
     
-    m_instance = std::make_shared<DatabaseManager>(queryProcessor);
+    m_instance = std::make_shared<DatabaseManager>(DatabaseManager{queryProcessor});
     
     return true;
 }
 
-std::shared_ptr<DatabaseManagerInterface> DatabaseManager::getInstance()
+std::shared_ptr<DatabaseManager> DatabaseManager::getInstance()
 {
     return m_instance;
 }
 
-std::unique_ptr<DatabaseFacadeIntellectualEditor> DatabaseManager::getDatabaseIntellectualEditorFacade()
+std::unique_ptr<DatabaseFacadeIntellectualEditor> DatabaseManager::createIntellectualEditorFacade()
 {
     return std::make_unique<DatabaseFacadeIntellectualEditor>(m_queryProcessor);
 }
 
-std::unique_ptr<DatabaseFacadeTrendSolver> DatabaseManager::getDatabaseTrendSolverFacade()
+std::unique_ptr<DatabaseFacadeTrendSolver> DatabaseManager::createTrendSolverFacade()
 {
     return std::make_unique<DatabaseFacadeTrendSolver>(m_queryProcessor);
 }

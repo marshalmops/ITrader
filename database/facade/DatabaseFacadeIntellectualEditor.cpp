@@ -46,7 +46,14 @@ std::unique_ptr<ErrorDatabase> DatabaseFacadeIntellectualEditor::insertPattern(c
     
     // inserting LINES of pattern:
     
-    for (const auto& line : pattern->getPatternLines()) {
+    for (const auto& line : pattern->getUpPatternLines()) {
+        std::unique_ptr<ErrorDatabase> insertionQueryError{};
+        
+        if ((insertionQueryError = insertLineOfPattern(line, insertedPattern)).get())
+            return std::move(insertionQueryError);
+    }
+    
+    for (const auto& line : pattern->getDownPatternLines()) {
         std::unique_ptr<ErrorDatabase> insertionQueryError{};
         
         if ((insertionQueryError = insertLineOfPattern(line, insertedPattern)).get())

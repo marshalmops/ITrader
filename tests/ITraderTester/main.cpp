@@ -5,9 +5,11 @@
 #include "database/DatabaseFacade_test.h"
 #include "database/DatabaseFacadeIntellectualEditor_test.h"
 
+#include "module/TrendSolver_test.h"
+
 int main(int argc, char *argv[]) {
     
-    QTest::qExec(new DatabaseFacadeIntellectualEditor_test, argc, argv);
+    QTest::qExec(new TrendSolver_test, argc, argv);
     
     return 0;
 }

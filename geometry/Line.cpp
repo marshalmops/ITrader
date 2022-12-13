@@ -57,7 +57,8 @@ void Line::addDot(const std::shared_ptr<Dot>& dot) {
     m_otherDots.push_back(dot);
 }
 
-Line::CrossingType Line::checkDotCrossing(const std::shared_ptr<Dot>& dot) const {
+Line::CrossingType Line::checkDotCrossing(const std::shared_ptr<Dot>& dot) const
+{
     Dot::xCoord x = dot.get()->getX();
     Dot::xCoord x1 = m_first.get()->getX();
     Dot::xCoord x2 = m_second.get()->getX();
@@ -68,9 +69,9 @@ Line::CrossingType Line::checkDotCrossing(const std::shared_ptr<Dot>& dot) const
     
     float yLine = (static_cast<float>(x - x1) / (x2 - x1)) * (y2 - y1) + y1;
     
-    if ((yLine + yLine * TrendSolverContext::S_ACCEPTABLE_DOT_CROSSING_DEVIATION_PERCENT >= y
+    if ((yLine + yLine * TrendSolverContext::C_ACCEPTABLE_DOT_CROSSING_DEVIATION_PERCENT >= y
         && yLine <= y)
-     || (yLine - yLine * TrendSolverContext::S_ACCEPTABLE_DOT_CROSSING_DEVIATION_PERCENT <= y
+     || (yLine - yLine * TrendSolverContext::C_ACCEPTABLE_DOT_CROSSING_DEVIATION_PERCENT <= y
         && yLine >= y))
     {
         return CrossingType::CT_DOT;

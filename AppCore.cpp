@@ -20,6 +20,6 @@ void AppCore::processError(std::shared_ptr<Error> error)
 void AppCore::handleDatabaseSettingsUpdate()
 {
     if (!DatabaseManager::initWithSettings())
-        processError(std::make_shared<Error>(ErrorDatabaseInitFailed()));
+        processError(std::make_shared<ErrorDatabaseInitFailed>(ErrorDatabaseInitFailed()));
     
 }

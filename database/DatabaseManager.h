@@ -3,17 +3,14 @@
 
 #include <memory>
 
-#include "DatabaseManagerTrendSolverInterface.h"
-#include "DatabaseManagerIntellectualEditorInterface.h"
-
 #include "driver/DatabaseDriverFabric.h"
 #include "queryProcessor/DatabaseQueryProcessorFabric.h"
+#include "facade/DatabaseFacadeIntellectualEditor.h"
+#include "facade/DatabaseFacadeTrendSolver.h"
 
-#include "settings/SettingsManager.h"
+#include "../settings/SettingsManager.h"
 
 class DatabaseManager
-        : public DatabaseManagerTrendSolverInterface,
-          public DatabaseManagerIntellectualEditorInterface
 {
 private:
     static std::shared_ptr<DatabaseManager> m_instance;
@@ -23,12 +20,11 @@ private:
     DatabaseManager(const std::shared_ptr<DatabaseQueryProcessor> &queryProcessor);
     
 public:
-    static bool                                      initWithSettings();
-    static std::shared_ptr<DatabaseManagerInterface> getInstance     ();
+    static bool                             initWithSettings();
+    static std::shared_ptr<DatabaseManager> getInstance     ();
     
-    std::unique_ptr<DatabaseFacadeIntellectualEditor> getDatabaseIntellectualEditorFacade() override;
-    std::unique_ptr<DatabaseFacadeTrendSolver>        getDatabaseTrendSolverFacade       () override;
-
+    std::unique_ptr<DatabaseFacadeIntellectualEditor> createIntellectualEditorFacade();
+    std::unique_ptr<DatabaseFacadeTrendSolver>        createTrendSolverFacade();
 };
 
 #endif // DATABASEMANAGER_H

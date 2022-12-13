@@ -5,32 +5,36 @@
 #include <vector>
 
 #include "error/ErrorSolver.h"
+#include "error/ErrorSolverInvalidInputData.h"
+
 #include "pattern/Pattern.h"
+#include "pattern/PatternStore.h"
+#include "pattern/StagePatternContainer.h"
 #include "geometry/StageLineContainer.h"
 
-#include "database/DatabaseManager.h"
+#include "database/facade/DatabaseFacadeTrendSolver.h"
 
 class TrendSolver : public QObject
 {
     Q_OBJECT
 public:
-    TrendSolver(QObject *parent = nullptr);
+    TrendSolver(std::unique_ptr<DatabaseFacadeTrendSolver> &&facade,
+                QObject *parent = nullptr);
     
 signals:
     void errorOccurred(const std::shared_ptr<ErrorSolver> error);
     
-    void trendDetected    (const TrendSolverContext::Trend trend);
     void patternGotten    (const std::shared_ptr<Pattern> pattern);
     void finalLinesChoosen(const std::shared_ptr<StageLineContainer> choosenLines);
     
 public slots:
-    void analyseDots(const std::vector<Dot> inputDots);
+    void resetFacade(std::shared_ptr<DatabaseFacadeTrendSolver> facade);
+    
+    void analyseDots(const QList<uint64_t> inputDots);
+    //void analyseDots(const std::vector<std::shared_ptr<Dot>> inputDots);
     
 private:
-    // facade ptr...
-    
-    std::vector<std::shared_ptr<Pattern>>     m_patternLoadCache; // for storing patterns WITHOUT FREQUENT DB QUERRIES;
-    std::vector<std::shared_ptr<LinePattern>> m_linePatternLoadCache; // for storing LINE patterns WITHOUT FREQUENT DB QUERRIES;
+    std::unique_ptr<DatabaseFacadeTrendSolver> m_facade;
 };
 
 #endif // TRENDSOLVER_H

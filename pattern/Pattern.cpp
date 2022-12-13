@@ -17,7 +17,8 @@ Pattern::Pattern()
       m_countOfUses{0},
       m_prevTrend{Trend::T_UNDEFINED},
       m_futureTrend{Trend::T_UNDEFINED},
-      m_patternLines{std::vector<PatternLine>{}}
+      m_upPatternLines{std::vector<PatternLine>{}},
+      m_downPatternLines{std::vector<PatternLine>{}}
 {
     
 }
@@ -26,14 +27,16 @@ Pattern::Pattern(const std::string &name,
                  const float probability,
                  const Trend prevTrend, 
                  const Trend futureTrend, 
-                 std::vector<PatternLine> &&patternLines)
+                 std::vector<PatternLine> &&upPatternLines,
+                 std::vector<PatternLine> &&downPatternLines)
     : m_id{0},
       m_name{name},
       m_probability{probability},
       m_countOfUses{0},
       m_prevTrend{prevTrend},
       m_futureTrend{futureTrend},
-      m_patternLines{patternLines}
+      m_upPatternLines{std::move(upPatternLines)},
+      m_downPatternLines{std::move(downPatternLines)}
 {
     
 }
@@ -44,14 +47,15 @@ Pattern::Pattern(const uint64_t id,
                  const uint64_t countOfUses,
                  const Trend prevTrend,
                  const Trend futureTrend,
-                 std::vector<PatternLine> &&patternLines)
+                 std::vector<PatternLine> &&upPatternLines,
+                 std::vector<PatternLine> &&downPatternLines)
     : m_id{id},
       m_name{name},
       m_probability{probability},
       m_countOfUses{countOfUses},
       m_prevTrend{prevTrend},
-      m_futureTrend{futureTrend},
-      m_patternLines{patternLines}
+      m_upPatternLines{std::move(upPatternLines)},
+      m_downPatternLines{std::move(downPatternLines)}
 { }
 
 uint64_t Pattern::getId() const {
@@ -78,41 +82,83 @@ Pattern::Trend Pattern::getFutureTrend() const {
     return m_futureTrend;
 }
 
-const std::vector<PatternLine>& Pattern::getPatternLines() const {
-    return m_patternLines;
+const std::vector<PatternLine>& Pattern::getUpPatternLines() const {
+    return m_upPatternLines;
+}
+
+const std::vector<PatternLine>& Pattern::getDownPatternLines() const {
+    return m_downPatternLines;
 }
 
 bool Pattern::initPatternLines(std::vector<PatternLine> &&patternLines)
 {
-    if (!m_patternLines.empty()) return false;
+    if (!m_upPatternLines.empty() || !m_downPatternLines.empty()) 
+        return false;
     
-    m_patternLines = std::move(patternLines);
+    std::vector<PatternLine> upPatternLinesBuffer{};
+    std::vector<PatternLine> downPatternLinesBuffer{};
+    
+    for (const auto &patternLine : patternLines) {
+        switch (patternLine.getSide()) {
+        case Line::Side::S_UP: {
+            upPatternLinesBuffer.push_back(patternLine);
+            
+            break;
+        }
+        case Line::Side::S_DOWN: {
+            downPatternLinesBuffer.push_back(patternLine);
+            
+            break;
+        }
+        default: return false;
+        }
+    }
+    
+    m_upPatternLines = std::move(upPatternLinesBuffer);
+    m_downPatternLines = std::move(downPatternLinesBuffer);
     
     return true;
 }
 
-bool Pattern::findInLinesFromBack(const std::vector<PatternLine> &patternLines) const {
-    if (patternLines.empty()) return false;
-    if (patternLines.size() < m_patternLines.size()) return false;
-    
-    int lastPatternInnerIndex = m_patternLines.size() - 1;
-    int patternInnerIndex = lastPatternInnerIndex;
-    
-    for (int i = patternLines.size() - 1; i >= 0; --i) {
-        if (patternLines.at(i).getLineId() 
-         == m_patternLines.at(patternInnerIndex).getLineId())
-        {
-            --patternInnerIndex;
-        } else {
-            if (patternInnerIndex != lastPatternInnerIndex && i < m_patternLines.size())
-                break;
-        }
-        
-        if (patternInnerIndex == -1)
-            return true;
+bool Pattern::findInLinesFromBack(const std::vector<PatternLine> &upPatternLines,
+                                  const std::vector<PatternLine> &downPatternLines) const 
+{
+    if (upPatternLines.empty() || downPatternLines.empty()) return false;
+    if ((upPatternLines.size() < m_upPatternLines.size())
+     || (downPatternLines.size() < m_downPatternLines.size()))
+    {
+            return false;
     }
     
-    return false;
+    auto checkSideLinesLambda = [&](const std::vector<PatternLine> &sideLines,
+                                    const std::vector<PatternLine> &patternSideLines) -> bool
+    {
+        if (patternSideLines.empty()) return true;
+        
+        int lastPatternInnerIndex = patternSideLines.size() - 1;
+        int patternInnerIndex = lastPatternInnerIndex;
+        
+        for (int i = sideLines.size() - 1; i >= 0; --i) {
+            if (sideLines.at(i).getLineId() 
+             == patternSideLines.at(patternInnerIndex).getLineId())
+            {
+                --patternInnerIndex;
+            } else {
+                break;
+                
+//                if (patternInnerIndex != lastPatternInnerIndex) //&& i < patternSideLines.size())
+//                    break;
+            }
+            
+            if (patternInnerIndex == -1)
+                return true;
+        }
+        
+        return false;
+    };
+    
+    return (checkSideLinesLambda(upPatternLines, m_upPatternLines)
+          && checkSideLinesLambda(downPatternLines, m_downPatternLines));
 }
 
 bool Pattern::fillWithVariantsHash(const QHash<QString, QVariant> &stringVariantHash)
@@ -151,4 +197,23 @@ bool Pattern::fillWithVariantsHash(const QHash<QString, QVariant> &stringVariant
     m_futureTrend = TrendSolverContext::getTrendByValue(futureTrendVariant.value<uint8_t>());
     
     return true;
+}
+
+QString Pattern::toString() const
+{
+    QString output{};
+    
+    output += "\nID: "; 
+    output += QString::number(m_id);
+    output += QString{"\nName: "} + m_name.c_str();
+    output += "\nProbability: ";
+    output += QString::number(m_probability);
+    output += "\nCount of uses: ";
+    output += QString::number(m_countOfUses);
+    output += "\nPrevious trend: "; 
+    output += Pattern::trendToString(m_prevTrend);
+    output += "\nFuture trend: ";
+    output += Pattern::trendToString(m_futureTrend);
+    
+    return output;
 }

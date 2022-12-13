@@ -4,8 +4,10 @@
 #include <cstdint>
 
 namespace TrendSolverContext {
-    static float S_ACCEPTABLE_DOT_CROSSING_DEVIATION_PERCENT = 0.05;
-    
+    constexpr static const float   C_ACCEPTABLE_DOT_CROSSING_DEVIATION_PERCENT = 0.05;
+    constexpr static const uint8_t C_MIN_COUNT_OF_DOTS_TO_ANALIZE = 30;
+    constexpr static const uint8_t C_COUNT_OF_DOTS_TO_GET_PATTERNS = 20;
+
     using TrendType = uint8_t;
     
     enum class Trend : TrendType {

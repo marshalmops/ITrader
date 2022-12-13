@@ -36,7 +36,7 @@ void DatabaseFacadeIntellectualEditor_test::initTestCase()
     auto linePatternStore = LinePatternStore::getInstance();
     
     QVERIFY(linePatternStore.get() != nullptr);
-    QVERIFY(linePatternStore->initLinePatterns(linePatterns));
+    QVERIFY(linePatternStore->setLinePatterns(linePatterns));
     
     std::vector<std::shared_ptr<Pattern>> patterns{};
     
@@ -47,12 +47,13 @@ void DatabaseFacadeIntellectualEditor_test::initTestCase()
 
 void DatabaseFacadeIntellectualEditor_test::checkPatternInsert_test()
 {
-    std::vector<PatternLine> newPatternLines{PatternLine{0, 0, Line::Side::S_DOWN}};
+    std::vector<PatternLine> newPatternDownLines{PatternLine{0, 0, Line::Side::S_DOWN}};
     std::shared_ptr<Pattern> newPattern{std::make_shared<Pattern>("newPattern", 
                                                                   0.6, 
                                                                   Pattern::Trend::T_UP, 
-                                                                  Pattern::Trend::T_UP, 
-                                                                  std::move(newPatternLines))};
+                                                                  Pattern::Trend::T_UP,
+                                                                  std::vector<PatternLine>{},
+                                                                  std::move(newPatternDownLines))};
     
     QVERIFY(m_dbFacade->insertPattern(newPattern).get() == nullptr);
     

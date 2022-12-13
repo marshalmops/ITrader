@@ -41,7 +41,7 @@ void DatabaseFacade_test::checkLinePatternsGetting_test()
     auto linePatternStore = LinePatternStore::getInstance();
     
     QVERIFY(linePatternStore.get() != nullptr);
-    QVERIFY(linePatternStore->initLinePatterns(linePatterns));
+    QVERIFY(linePatternStore->setLinePatterns(linePatterns));
 }
 
 void DatabaseFacade_test::checkPatternsGetting_test()

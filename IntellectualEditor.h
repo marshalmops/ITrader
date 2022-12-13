@@ -3,16 +3,25 @@
 
 #include <QObject>
 
-#include "database/DatabaseManager.h"
+#include "error/Error.h"
+
+#include "database/facade/DatabaseFacadeIntellectualEditor.h"
 
 class IntellectualEditor : public QObject
 {
     Q_OBJECT
 public:
-    IntellectualEditor(QObject *parent = nullptr);
+    IntellectualEditor(std::unique_ptr<DatabaseFacadeIntellectualEditor> &&facade,
+                       QObject *parent = nullptr);
     
 signals:
-    void knowledgeBaseChanged(); // lets to PATTERNS RELOADING...
+    void errorOccurred(const std::shared_ptr<Error> error);
+    
+public slots:
+    void resetFacade(std::shared_ptr<DatabaseFacadeIntellectualEditor> facade);
+    
+private:
+    std::unique_ptr<DatabaseFacadeIntellectualEditor> m_facade;
 };
 
 #endif // INTELLECTUALEDITOR_H

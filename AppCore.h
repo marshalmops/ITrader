@@ -21,6 +21,8 @@ public:
     
 signals:
 //    void showMessage(const QString message);
+    void resetTrendSolverFacade       (std::shared_ptr<DatabaseFacadeTrendSolver> facade);
+    void resetIntellectualEditorFacade(std::shared_ptr<DatabaseFacadeIntellectualEditor> facade);
     
 public slots:
     void processError(const std::shared_ptr<Error> error);

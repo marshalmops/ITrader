@@ -1,10 +1,13 @@
 TEMPLATE = app
-CONFIG += console c++17 sql
+CONFIG += console c++17
 CONFIG -= app_bundle
 
 SOURCES += \
         AppCore.cpp \
         AppInitializer.cpp \
+        DotTableModel.cpp \
+        MainWindowView.cpp \
+        SettingsView.cpp \
         database/driver/DatabaseDriver.cpp \
         database/driver/DatabaseDriverFabric.cpp \
         database/facade/DatabaseFacade.cpp \
@@ -29,9 +32,9 @@ SOURCES += \
         pattern/LinePattern.cpp \
         pattern/LinePatternStore.cpp \
         MainWindowModel.cpp \
-        MainWindowView.cpp \
         pattern/Pattern.cpp \
         pattern/PatternLine.cpp \
+        pattern/PatternStore.cpp \
         settings/DatabaseSettings.cpp \
         settings/SettingsManager.cpp \
         geometry/StageLineContainer.cpp \
@@ -43,6 +46,9 @@ HEADERS += \
     AppContext.h \
     AppCore.h \
     AppInitializer.h \
+    DotTableModel.h \
+    MainWindowView.h \
+    SettingsView.h \
     database/DatabaseContext.h \
     database/driver/DatabaseDriver.h \
     database/driver/DatabaseDriverFabric.h \
@@ -50,9 +56,6 @@ HEADERS += \
     database/facade/DatabaseFacadeIntellectualEditor.h \
     database/facade/DatabaseFacadeTrendSolver.h \
     database/DatabaseManager.h \
-    database/DatabaseManagerIntellectualEditorInterface.h \
-    database/DatabaseManagerInterface.h \
-    database/DatabaseManagerTrendSolverInterface.h \
     database/queryProcessor/DatabaseQueryProcessor.h \
     database/queryProcessor/DatabaseQueryProcessorFabric.h \
     error/ErrorDatabase.h \
@@ -73,9 +76,9 @@ HEADERS += \
     pattern/LinePattern.h \
     pattern/LinePatternStore.h \
     MainWindowModel.h \
-    MainWindowView.h \
     pattern/Pattern.h \
     pattern/PatternLine.h \
+    pattern/PatternStore.h \
     settings/DatabaseSettings.h \
     settings/SettingsInterface.h \
     settings/SettingsManager.h \
@@ -84,4 +87,4 @@ HEADERS += \
     TrendSolver.h \
     TrendSolverContext.h
 
-QT += widgets
+QT += widgets sql

@@ -43,7 +43,8 @@ private:
     Trend       m_prevTrend;
     Trend       m_futureTrend;
     
-    std::vector<PatternLine> m_patternLines;
+    std::vector<PatternLine> m_upPatternLines;
+    std::vector<PatternLine> m_downPatternLines;
     
 public:
     Pattern();
@@ -51,14 +52,16 @@ public:
             const float probability,
             const Trend prevTrend,
             const Trend futureTrend,
-            std::vector<PatternLine> &&patternLines);
+            std::vector<PatternLine> &&upPatternLines,
+            std::vector<PatternLine> &&downPatternLines);
     Pattern(const uint64_t id,
             const std::string& name,
             const float probability,
             const uint64_t countOfUses,
             const Trend prevTrend,
             const Trend futureTrend,
-            std::vector<PatternLine> &&patternLines = std::vector<PatternLine>{});
+            std::vector<PatternLine> &&upPatternLines = std::vector<PatternLine>{},
+            std::vector<PatternLine> &&downPatternLines = std::vector<PatternLine>{});
     
     uint64_t getId() const;
     
@@ -71,13 +74,17 @@ public:
     Trend getPrevTrend() const;
     Trend getFutureTrend() const;
     
-    const std::vector<PatternLine>& getPatternLines() const;
+    const std::vector<PatternLine>& getUpPatternLines() const;
+    const std::vector<PatternLine>& getDownPatternLines() const;
     
     bool initPatternLines(std::vector<PatternLine> &&patternLines);
     
-    bool findInLinesFromBack(const std::vector<PatternLine> &patternLines) const;
+    bool findInLinesFromBack(const std::vector<PatternLine> &upPatternLines,
+                             const std::vector<PatternLine> &downPatternLines) const;
     
     virtual bool fillWithVariantsHash(const QHash<QString, QVariant> &stringVariantHash) override;
+    
+    QString toString() const;
     
     friend std::ostream& operator<<(std::ostream &out, const Pattern &pattern);
 };
