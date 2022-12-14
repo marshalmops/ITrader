@@ -5,6 +5,8 @@
 #include <vector>
 
 #include "error/Error.h"
+#include "error/ErrorAppIncorrectBehaviour.h"
+#include "error/ErrorIntellectualEditorIncorrectModelIndex.h"
 
 #include "pattern/PatternStore.h"
 
@@ -20,8 +22,10 @@ public:
     IntellectualEditorModel(PatternTableModel *patternTableModel,
                             LinePatternTableModel *linePatternTableModel,
                             std::unique_ptr<DatabaseFacadeIntellectualEditor> &&facade,
-                            
                             QObject *parent = nullptr);
+    
+    PatternTableModel*     getPatternTableModel();
+    LinePatternTableModel* getLinePatternTableModel();
     
 signals:
     void errorOccurred(const std::shared_ptr<Error> error);
@@ -29,8 +33,10 @@ signals:
 public slots:
     void resetFacade(std::shared_ptr<DatabaseFacadeIntellectualEditor> facade);
     
-    void insertNewPattern     ();
-    void deleteSelectedPattern(const uint64_t patternId);
+    void insertNewPattern     (const std::shared_ptr<Pattern> newPattern);
+    void deleteSelectedPattern(const uint64_t patternIndex);
+    
+    void prepareModels();
     
 private:
     PatternTableModel     *m_patternTableModel;

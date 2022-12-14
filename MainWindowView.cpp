@@ -1,11 +1,13 @@
 #include "MainWindowView.h"
 
-MainWindowView::MainWindowView(QTableView *tableView,
+MainWindowView::MainWindowView(MainWindowModel *model,
                                QWidget *parent)
     : QWidget{parent},
-      m_costDotsTableView{tableView}
+      m_model{model}
 {
     resize(C_DEFAULT_WIDTH, C_DEFAULT_HEIGHT);
+    
+    m_model->setParent(this);
     
     QLabel *dotsTableLabel = new QLabel(tr("Dots:"));
     
@@ -17,6 +19,10 @@ MainWindowView::MainWindowView(QTableView *tableView,
     dotsTableButtonsLayout->addWidget(plusDotButton);
     dotsTableButtonsLayout->addWidget(minusDotButton);
     dotsTableButtonsLayout->addStretch(1);
+    
+    m_costDotsTableView = new QTableView{};
+    
+    m_costDotsTableView->setModel(m_model->getDotTableModel());
     
     QHBoxLayout *dotsTableLayout = new QHBoxLayout{};
     
@@ -58,7 +64,6 @@ MainWindowView::MainWindowView(QTableView *tableView,
     QPushButton *solveButton    = new QPushButton{tr("Solve")};
     
     settingsButton->setEnabled(false);
-    editorButton->setEnabled(false);
     
     QHBoxLayout *buttonsLayout = new QHBoxLayout{};
     
@@ -79,6 +84,7 @@ MainWindowView::MainWindowView(QTableView *tableView,
     
     
     connect(settingsButton, &QPushButton::clicked, this, &MainWindowView::openSettings);
+    connect(editorButton,   &QPushButton::clicked, this, &MainWindowView::openEditor);
     connect(solveButton,    &QPushButton::clicked, this, &MainWindowView::analyzeDots);
 }
 
@@ -86,6 +92,30 @@ void MainWindowView::openSettings()
 {
     if ((new SettingsView(this))->exec() == QDialog::DialogCode::Accepted)
         emit settingsChanged();
+}
+
+void MainWindowView::openEditor()
+{
+    if (!m_intellectualEditorView) {
+        m_intellectualEditorView = new IntellectualEditorView(m_model->getIntellectualEditorModel(), this);
+    }
+
+    m_intellectualEditorView->exec();
+}
+
+void MainWindowView::addDot()
+{
+    m_model->addDotToModel();
+}
+
+void MainWindowView::removeDot()
+{
+    m_model->removeDotFromModel();
+}
+
+void MainWindowView::analyzeDots()
+{
+    m_model->analyzeDotsFromDotsModel();
 }
 
 void MainWindowView::showChoosenPattern(const std::shared_ptr<StagePatternLineContainer> patternLineContainer, 

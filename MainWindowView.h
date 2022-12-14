@@ -17,6 +17,10 @@
 
 #include "SettingsView.h"
 
+#include "IntellectualEditorView.h"
+
+#include "MainWindowModel.h"
+
 class MainWindowView : public QWidget
 {
     constexpr static const int C_DEFAULT_WIDTH  = 640;
@@ -24,28 +28,33 @@ class MainWindowView : public QWidget
     
     Q_OBJECT
 public:
-    explicit MainWindowView(QTableView *tableView,
+    explicit MainWindowView(MainWindowModel *model,
                             QWidget *parent = nullptr);
     
 signals:
     void errorOccured(const std::shared_ptr<Error> error);
     void settingsChanged();
     
-    void analyzeDots();
+public slots:
+    void openSettings();
+    void openEditor();
     
     void addDot();
     void removeDot();
     
-public slots:
-    void openSettings();
+    void analyzeDots();
     
     void showChoosenPattern(const std::shared_ptr<StagePatternLineContainer> pattern, 
                             const std::vector<std::shared_ptr<Dot>> dots);
     
 private:
+    MainWindowModel *m_model;
+    
     QTableView  *m_costDotsTableView;
     QTextEdit   *m_patternOutput;
     QCustomPlot *m_plot;
+
+    IntellectualEditorView *m_intellectualEditorView;
 };
 
 #endif // MAINWINDOWVIEW_H

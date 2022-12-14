@@ -8,6 +8,7 @@
 #include "MainWindowModel.h"
 #include "TrendSolver.h"
 #include "IntellectualEditorModel.h"
+#include "IntellectualEditorView.h"
 
 #include "settings/SettingsManager.h"
 
@@ -21,9 +22,7 @@ public:
     
     static bool initializeApp(std::unique_ptr<AppCore> &appCore,
                               std::unique_ptr<MainWindowView> &mainWindowView,
-                              std::unique_ptr<MainWindowModel> &mainWindowModel,
-                              std::unique_ptr<TrendSolver> &trendSolver,
-                              std::unique_ptr<IntellectualEditorModel> &intellectualEditor);
+                              std::unique_ptr<TrendSolver> &trendSolver);
 };
 
 #endif // APPINITIALIZER_H

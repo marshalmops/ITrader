@@ -8,6 +8,9 @@
 class LinePatternTableModel : public QAbstractTableModel
 {
     Q_OBJECT
+
+    constexpr static const int C_PROP_TO_SHOW_COUNT = 2;
+
 public:
     explicit LinePatternTableModel(QObject *parent = nullptr);
     
@@ -17,14 +20,20 @@ public:
     virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
     virtual Qt::ItemFlags flags(const QModelIndex &index = QModelIndex{}) const override;
     
-    bool addLinePattern(const std::shared_ptr<LinePattern> &linePattern);
+    bool addLinePattern       (const std::shared_ptr<LinePattern> &linePattern);
+    bool removeLinePattern    (const int linePatternIndex);
+    bool getLinePatternByIndex(const int linePatternIndex, 
+                               std::shared_ptr<LinePattern> &linePattern);
+    
+    bool setLinePatterns(const std::vector<std::shared_ptr<LinePattern>> linePatternsToBeSet);
+    
+    std::vector<std::shared_ptr<LinePattern>> getLinePatterns() const;
     
 protected:
-    virtual bool insertRows(int row, int count, const QModelIndex &parent = QModelIndex{}) override;
-    virtual bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex{}) override;
+    void clearLinePatterns();
     
 private:
-    std::vector<std::shared_ptr<LinePattern>> m_linePatterns;
+    QList<std::shared_ptr<LinePattern>> m_linePatterns;
 };
 
 #endif // LINEPATTERNTABLEMODEL_H

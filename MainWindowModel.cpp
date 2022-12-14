@@ -1,11 +1,23 @@
 #include "MainWindowModel.h"
 
 MainWindowModel::MainWindowModel(DotTableModel *dotTableModel, 
+                                 IntellectualEditorModel *intellectualEditorModel, 
                                  QObject *parent)
     : QObject{parent},
-      m_dotTableModel{dotTableModel}
+      m_dotTableModel{dotTableModel},
+      m_intellectualEditorModel{intellectualEditorModel}
 {
     
+}
+
+DotTableModel *MainWindowModel::getDotTableModel()
+{
+    return m_dotTableModel;
+}
+
+IntellectualEditorModel *MainWindowModel::getIntellectualEditorModel()
+{
+    return m_intellectualEditorModel;
 }
 
 void MainWindowModel::analyzeDotsFromDotsModel()

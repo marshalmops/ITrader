@@ -6,13 +6,19 @@
 #include "error/Error.h"
 
 #include "DotTableModel.h"
+#include "IntellectualEditorModel.h"
 
 class MainWindowModel : public QObject
 {
     Q_OBJECT
 public:
     explicit MainWindowModel(DotTableModel *dotTableModel,
+                             IntellectualEditorModel *intellectualEditorModel,
                              QObject *parent = nullptr);
+    
+    DotTableModel* getDotTableModel();
+    
+    IntellectualEditorModel* getIntellectualEditorModel();
     
 signals:
     void errorOccured(const std::shared_ptr<Error> error);
@@ -27,6 +33,7 @@ public slots:
     
 private:
     DotTableModel *m_dotTableModel;
+    IntellectualEditorModel *m_intellectualEditorModel;
 };
 
 #endif // MAINWINDOWMODEL_H

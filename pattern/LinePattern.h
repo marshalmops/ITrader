@@ -22,6 +22,16 @@ public:
     };
     
     static LinePattern::AngleType angleTypeFromDirection(const Line::Direction dir);
+
+    static const char* angleTypeToString(const AngleType angleType) {
+        static const std::unordered_map<AngleType, const char*> angleTypeStringHash{
+            {AngleType::AT_ZERO, "Zero"},
+            {AngleType::AT_NEGATIVE, "Negative"},
+            {AngleType::AT_POSITIVE, "Positive"}
+        };
+
+        return angleTypeStringHash.at(angleType);
+    }
     
 private:
     uint64_t    m_id;

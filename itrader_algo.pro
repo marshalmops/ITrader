@@ -8,8 +8,10 @@ SOURCES += \
         DotTableModel.cpp \
         IntellectualEditorModel.cpp \
         IntellectualEditorView.cpp \
+        LinePatternChooserDialog.cpp \
         LinePatternTableModel.cpp \
         MainWindowView.cpp \
+        PatternEditorDialog.cpp \
         PatternTableModel.cpp \
         SettingsView.cpp \
         database/driver/DatabaseDriver.cpp \
@@ -25,6 +27,8 @@ SOURCES += \
         error/ErrorDatabaseIncorrectQuery.cpp \
         error/ErrorDatabaseInitFailed.cpp \
         error/ErrorDatabaseQueryError.cpp \
+        error/ErrorIntellectualEditor.cpp \
+        error/ErrorIntellectualEditorIncorrectModelIndex.cpp \
         geometry/Dot.cpp \
         error/Error.cpp \
         error/ErrorApp.cpp \
@@ -54,8 +58,10 @@ HEADERS += \
     DotTableModel.h \
     IntellectualEditorModel.h \
     IntellectualEditorView.h \
+    LinePatternChooserDialog.h \
     LinePatternTableModel.h \
     MainWindowView.h \
+    PatternEditorDialog.h \
     PatternTableModel.h \
     SettingsView.h \
     database/DatabaseContext.h \
@@ -72,6 +78,8 @@ HEADERS += \
     error/ErrorDatabaseIncorrectQuery.h \
     error/ErrorDatabaseInitFailed.h \
     error/ErrorDatabaseQueryError.h \
+    error/ErrorIntellectualEditor.h \
+    error/ErrorIntellectualEditorIncorrectModelIndex.h \
     geometry/Dot.h \
     error/Error.h \
     error/ErrorApp.h \

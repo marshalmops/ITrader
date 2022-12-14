@@ -27,6 +27,12 @@ namespace ErrorType {
         
         // to 0b1011'1111
     };
+    
+    enum IntellectualEditor : ValueType {
+        IE_INCORRECT_MODEL_INDEX = 0b1100'0000
+        
+        // to 0b1111'1111
+    };
 }
 
 #endif // ERRORTYPE_H
