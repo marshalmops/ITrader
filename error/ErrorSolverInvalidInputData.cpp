@@ -2,7 +2,7 @@
 
 
 ErrorSolverInvalidInputData::ErrorSolverInvalidInputData()
-    : ErrorSolver{"Invalid input data has been occurred!", true}
+    : ErrorSolver{"Invalid input data has been occurred!", false}
 {
     
 }

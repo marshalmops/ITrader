@@ -26,7 +26,7 @@ signals:
     
 public slots:
     void processError(const std::shared_ptr<Error> error);
-    void handleDatabaseSettingsUpdate(); // from GUI;
+    void handleSettingsUpdate(); // from GUI;
 };
 
 #endif // APPCORE_H

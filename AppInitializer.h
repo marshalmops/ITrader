@@ -7,7 +7,7 @@
 #include "MainWindowView.h"
 #include "MainWindowModel.h"
 #include "TrendSolver.h"
-#include "IntellectualEditor.h"
+#include "IntellectualEditorModel.h"
 
 #include "settings/SettingsManager.h"
 
@@ -23,7 +23,7 @@ public:
                               std::unique_ptr<MainWindowView> &mainWindowView,
                               std::unique_ptr<MainWindowModel> &mainWindowModel,
                               std::unique_ptr<TrendSolver> &trendSolver,
-                              std::unique_ptr<IntellectualEditor> &intellectualEditor);
+                              std::unique_ptr<IntellectualEditorModel> &intellectualEditor);
 };
 
 #endif // APPINITIALIZER_H

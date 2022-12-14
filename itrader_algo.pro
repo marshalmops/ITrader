@@ -6,7 +6,11 @@ SOURCES += \
         AppCore.cpp \
         AppInitializer.cpp \
         DotTableModel.cpp \
+        IntellectualEditorModel.cpp \
+        IntellectualEditorView.cpp \
+        LinePatternTableModel.cpp \
         MainWindowView.cpp \
+        PatternTableModel.cpp \
         SettingsView.cpp \
         database/driver/DatabaseDriver.cpp \
         database/driver/DatabaseDriverFabric.cpp \
@@ -27,7 +31,6 @@ SOURCES += \
         error/ErrorAppIncorrectBehaviour.cpp \
         error/ErrorSolver.cpp \
         error/ErrorSolverInvalidInputData.cpp \
-        IntellectualEditor.cpp \
         geometry/Line.cpp \
         pattern/LinePattern.cpp \
         pattern/LinePatternStore.cpp \
@@ -49,7 +52,11 @@ HEADERS += \
     AppCore.h \
     AppInitializer.h \
     DotTableModel.h \
+    IntellectualEditorModel.h \
+    IntellectualEditorView.h \
+    LinePatternTableModel.h \
     MainWindowView.h \
+    PatternTableModel.h \
     SettingsView.h \
     database/DatabaseContext.h \
     database/driver/DatabaseDriver.h \
@@ -72,7 +79,6 @@ HEADERS += \
     error/ErrorSolver.h \
     error/ErrorSolverInvalidInputData.h \
     error/ErrorType.h \
-    IntellectualEditor.h \
     geometry/Line.h \
     pattern/DatabaseEntity.h \
     pattern/LinePattern.h \

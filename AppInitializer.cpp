@@ -4,7 +4,7 @@ bool AppInitializer::initializeApp(std::unique_ptr<AppCore> &appCore,
                                    std::unique_ptr<MainWindowView> &mainWindowView, 
                                    std::unique_ptr<MainWindowModel> &mainWindowModel,
                                    std::unique_ptr<TrendSolver> &trendSolver,
-                                   std::unique_ptr<IntellectualEditor> &intellectualEditor)
+                                   std::unique_ptr<IntellectualEditorModel> &intellectualEditor)
 {
     // basic init:
     
@@ -59,31 +59,24 @@ bool AppInitializer::initializeApp(std::unique_ptr<AppCore> &appCore,
     appCore = std::make_unique<AppCore>();
     
     trendSolver        = std::make_unique<TrendSolver>(std::move(trendSolverFacade));
-    intellectualEditor = std::make_unique<IntellectualEditor>(std::move(intellectualEditorFacade));
-    
-    // connecting components...
-    
-    // mainWindowView -> mainWindowModel:
+    intellectualEditor = std::make_unique<IntellectualEditorModel>(std::move(intellectualEditorFacade));
     
     QObject::connect(mainWindowView.get(), &MainWindowView::analyzeDots, mainWindowModel.get(), &MainWindowModel::analyzeDotsFromDotsModel);
-    QObject::connect(mainWindowView.get(), &MainWindowView::addDot, mainWindowModel.get(), &MainWindowModel::addDotToModel);
-    QObject::connect(mainWindowView.get(), &MainWindowView::removeDot, mainWindowModel.get(), &MainWindowModel::removeDotFromModel);
+    QObject::connect(mainWindowView.get(), &MainWindowView::addDot,      mainWindowModel.get(), &MainWindowModel::addDotToModel);
+    QObject::connect(mainWindowView.get(), &MainWindowView::removeDot,   mainWindowModel.get(), &MainWindowModel::removeDotFromModel);
+    QObject::connect(mainWindowView.get(), &MainWindowView::errorOccured,    appCore.get(), &AppCore::processError);
+    QObject::connect(mainWindowView.get(), &MainWindowView::settingsChanged, appCore.get(), &AppCore::handleSettingsUpdate);
     
-    // mainWindowModel -> mainWindowView:
-    
-    
-    
-    // mainWindowModel -> trendSolver:
-    
+    QObject::connect(mainWindowModel.get(), &MainWindowModel::errorOccured, appCore.get(), &AppCore::processError);
     QObject::connect(mainWindowModel.get(), &MainWindowModel::dotsToAnalyzeGotten, trendSolver.get(), &TrendSolver::analyseDots);
     
-    // trendSolver -> mainWindowView:
-    
     QObject::connect(trendSolver.get(), &TrendSolver::patternGotten, mainWindowView.get(), &MainWindowView::showChoosenPattern);
+    QObject::connect(trendSolver.get(), &TrendSolver::errorOccurred, appCore.get(), &AppCore::processError);
     
-    // errors to AppCore:
+    QObject::connect(intellectualEditor.get(), &IntellectualEditorModel::errorOccurred, appCore.get(), &AppCore::processError);
     
-    
+    QObject::connect(appCore.get(), &AppCore::resetTrendSolverFacade,        trendSolver.get(),        &TrendSolver::resetFacade);
+    QObject::connect(appCore.get(), &AppCore::resetIntellectualEditorFacade, intellectualEditor.get(), &IntellectualEditorModel::resetFacade);
     
     return true;
 }

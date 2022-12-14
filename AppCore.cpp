@@ -17,7 +17,7 @@ void AppCore::processError(std::shared_ptr<Error> error)
         QMessageBox::warning(nullptr, C_WARNING_MESSAGE_TITLE, error->getMessage().c_str());
 }
 
-void AppCore::handleDatabaseSettingsUpdate()
+void AppCore::handleSettingsUpdate()
 {
     if (!DatabaseManager::initWithSettings())
         processError(std::make_shared<ErrorDatabaseInitFailed>(ErrorDatabaseInitFailed()));

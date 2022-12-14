@@ -54,12 +54,17 @@ MainWindowView::MainWindowView(QTableView *tableView,
     inputOuputLayout->addLayout(patternOutputLayout);
     
     QPushButton *settingsButton = new QPushButton{tr("Settings...")};
+    QPushButton *editorButton   = new QPushButton{tr("Editor...")};
     QPushButton *solveButton    = new QPushButton{tr("Solve")};
+    
+    settingsButton->setEnabled(false);
+    editorButton->setEnabled(false);
     
     QHBoxLayout *buttonsLayout = new QHBoxLayout{};
     
     buttonsLayout->addStretch(1);
     buttonsLayout->addWidget(settingsButton);
+    buttonsLayout->addWidget(editorButton);
     buttonsLayout->addWidget(solveButton);
     
     QVBoxLayout *mainLayout = new QVBoxLayout{};
@@ -71,6 +76,7 @@ MainWindowView::MainWindowView(QTableView *tableView,
     
     connect(plusDotButton,  &QPushButton::clicked, this, &MainWindowView::addDot);
     connect(minusDotButton, &QPushButton::clicked, this, &MainWindowView::removeDot);
+    
     
     connect(settingsButton, &QPushButton::clicked, this, &MainWindowView::openSettings);
     connect(solveButton,    &QPushButton::clicked, this, &MainWindowView::analyzeDots);

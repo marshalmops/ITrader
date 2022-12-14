@@ -32,7 +32,6 @@ public slots:
     void resetFacade(std::shared_ptr<DatabaseFacadeTrendSolver> facade);
     
     void analyseDots(const QList<uint64_t> inputDots);
-    //void analyseDots(const std::vector<std::shared_ptr<Dot>> inputDots);
     
 private:
     std::unique_ptr<DatabaseFacadeTrendSolver> m_facade;
